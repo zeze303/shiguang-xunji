@@ -42,12 +42,30 @@
   gap: 22rpx;
 }
 
+.avatar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 128rpx;
+  height: 128rpx;
+  flex: 0 0 128rpx;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  border-radius: 50%;
+  overflow: hidden;
+  line-height: 1;
+}
+
+.avatar-btn::after {
+  border: none;
+}
+
 .avatar-wrap {
   width: 112rpx;
   height: 112rpx;
   flex: 0 0 112rpx;
-  margin-right: 0;
-  margin-bottom: 0;
 }
 
 
@@ -79,10 +97,33 @@
   min-width: 0;
 }
 
-.nickname {
+.nickname-row {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.nickname-input {
+  display: inline;
   font-size: 32rpx;
   font-weight: 700;
   color: var(--text-primary);
+  background: transparent;
+  border: none;
+  padding: 0;
+  min-height: auto;
+  line-height: 1.4;
+}
+
+.nickname-input::after {
+  border: none;
+}
+
+.nickname-hint {
+  font-size: 20rpx;
+  color: var(--text-dim);
+  opacity: 0.6;
+  flex-shrink: 0;
 }
 
 .profile-tip {

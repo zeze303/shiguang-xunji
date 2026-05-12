@@ -62,25 +62,40 @@ Page({
     }
   },
 
-  async handleGetProfile() {
-    if (this.data._profileLock) {
-      wx.showToast({ title: '操作过于频繁，请稍后再试', icon: 'none' })
-      return
-    }
-    this.setData({ _profileLock: true })
+  onChooseAvatar(e) {
+    const avatarUrl = e.detail.avatarUrl
+    const info = this.data.userInfo || {}
+    info.avatarUrl = avatarUrl
+    this.setData({ userInfo: { ...info } })
+    this.saveProfile({ avatarUrl })
+  },
+
+  onNicknameBlur(e) {
+    const nickName = e.detail.value
+    const info = this.data.userInfo || {}
+    if (!nickName || nickName === info.nickName) return
+    info.nickName = nickName
+    this.setData({ userInfo: { ...info } })
+    this.saveProfile({ nickName })
+  },
+
+  async saveProfile(partial) {
+    if (this._saving) return
+    this._saving = true
     try {
-      const profile = await wx.getUserProfile({ desc: '用于展示昵称和头像' })
-      const saved = await saveUserProfileCloud(profile.userInfo || {})
-      this.setData({ userInfo: saved, _profileLock: false })
+      const cur = this.data.userInfo || {}
+      const data = {
+        nickName: partial.nickName || cur.nickName || '微信用户',
+        avatarUrl: partial.avatarUrl || cur.avatarUrl || ''
+      }
+      const saved = await saveUserProfileCloud(data)
+      this.setData({ userInfo: saved })
       wx.showToast({ title: '资料已更新', icon: 'success' })
     } catch (error) {
-      if (error && /cancel/i.test(String(error.errMsg || error.message || ''))) {
-        this.setData({ _profileLock: false })
-        return
-      }
-      this.setData({ _profileLock: false })
-      console.error('获取头像昵称失败：', error)
-      wx.showToast({ title: '更新失败', icon: 'none' })
+      console.error('保存头像昵称失败：', error)
+      wx.showToast({ title: '保存失败', icon: 'none' })
+    } finally {
+      this._saving = false
     }
   },
 
