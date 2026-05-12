@@ -8,7 +8,7 @@
 
   <view class="profile-card">
     <view class="profile-main">
-      <view class="avatar-wrap" bindtap="handleGetProfile">
+      <view class="avatar-wrap">
         <image
           wx:if="{{userInfo && userInfo.avatarUrl}}"
           class="avatar"
@@ -21,9 +21,6 @@
           src="/images/icon-avatar-default.svg"
           mode="aspectFill"
         />
-        <view class="avatar-edit">
-          <image class="avatar-edit-icon" src="/images/icon-edit.svg" mode="aspectFit" />
-        </view>
       </view>
 
       <view class="profile-info">
@@ -39,6 +36,7 @@
 
     <view class="profile-actions">
       <view class="profile-btn profile-btn-light" bindtap="copyOpenid">复制 OpenID</view>
+      <view class="profile-btn" bindtap="handleGetProfile">更新头像昵称</view>
     </view>
   </view>
 

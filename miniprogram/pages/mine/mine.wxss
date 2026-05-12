@@ -43,32 +43,14 @@
 }
 
 .avatar-wrap {
-  position: relative;
-  width: 128rpx;
-  height: 128rpx;
-  flex: 0 0 128rpx;
+  width: 112rpx;
+  height: 112rpx;
+  flex: 0 0 112rpx;
   margin-right: 0;
   margin-bottom: 0;
 }
 
-.avatar-edit {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 40rpx;
-  height: 40rpx;
-  border-radius: 50%;
-  background: var(--cyan);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2rpx solid var(--glass);
-}
 
-.avatar-edit-icon {
-  width: 22rpx;
-  height: 22rpx;
-}
 
 .avatar {
   width: 100%;
