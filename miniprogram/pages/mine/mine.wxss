@@ -187,10 +187,11 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0;
+  top: 24rpx;
   width: 6rpx;
+  height: 80rpx;
   background: linear-gradient(180deg, var(--cyan), #5B7CFF);
+  border-radius: 3rpx;
 }
 
 .menu-main {
