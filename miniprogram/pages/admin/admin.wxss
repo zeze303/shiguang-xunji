@@ -82,7 +82,35 @@
 }
 
 .post-card {
+  position: relative;
   margin-bottom: 20rpx;
+  overflow: hidden;
+}
+
+.post-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6rpx;
+}
+
+.post-card[data-audit="pending"]::before {
+  background: var(--color-warning);
+}
+
+.post-card[data-audit="approved"]::before {
+  background: var(--color-success);
+}
+
+.post-card[data-audit="rejected"]::before {
+  background: var(--color-error);
+}
+
+.post-card[data-audit="closed"]::before,
+.post-card[data-audit="all"]::before {
+  background: var(--text-dim);
 }
 
 .post-head {
@@ -135,18 +163,18 @@
 }
 
 .audit-success {
-  background: #dcfce7;
-  color: #15803d;
+  background: var(--color-success-bg);
+  color: var(--color-success);
 }
 
 .audit-danger {
-  background: #fee2e2;
-  color: #b91c1c;
+  background: var(--color-error-bg);
+  color: var(--color-error);
 }
 
 .audit-warning {
-  background: #fff7ed;
-  color: #c2410c;
+  background: var(--color-warning-bg);
+  color: var(--color-warning);
 }
 
 .status-row {
@@ -231,17 +259,31 @@
 
 .approve-btn {
   color: #fff;
-  background: #18a058;
+  background: var(--color-success);
+}
+
+.approve-btn:active {
+  background: var(--color-success-hover);
 }
 
 .reject-btn {
-  color: #fff;
-  background: #d08a00;
+  color: var(--color-warning);
+  background: transparent;
+  border: 1.5rpx solid var(--color-warning);
+}
+
+.reject-btn:active {
+  background: var(--color-warning-bg);
 }
 
 .delete-btn {
-  color: #fff;
-  background: #d14343;
+  color: var(--color-error);
+  background: transparent;
+  border: 1.5rpx solid var(--color-error);
+}
+
+.delete-btn:active {
+  background: var(--color-error-bg);
 }
 
 .approve-btn::after,

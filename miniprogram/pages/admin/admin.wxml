@@ -20,7 +20,7 @@
     </view>
   </scroll-view>
 
-  <view class="card post-card" wx:for="{{list}}" wx:key="id">
+  <view class="card post-card" wx:for="{{list}}" wx:key="id" data-audit="{{item.auditStatus || 'all'}}">
     <view class="between post-head" data-id="{{item.id}}" bindtap="goDetail">
       <view class="post-title">{{item.title}}</view>
       <view class="post-head-right">
