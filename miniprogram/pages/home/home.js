@@ -9,10 +9,10 @@ Page({
     themeToggleLabel: '浅色',
 
     quickActions: [
-      { title: '全部信息', desc: '查看最新失物招领信息', type: 'all', category: '全部', status: 'all' },
-      { title: '证件专区', desc: '身份证、校园卡等高频物品', type: 'all', category: '证件', status: 'all' },
-      { title: '展示中', desc: '查看当前公开展示中的记录', type: 'all', category: '全部', status: 'published' },
-      { title: '已完成', desc: '查看已成功找回或认领的信息', type: 'all', category: '全部', status: 'resolved' }
+      { title: '全部信息', desc: '查看最新失物招领信息', icon: 'icon-search.svg', type: 'all', category: '全部', status: 'all' },
+      { title: '证件专区', desc: '身份证、校园卡等高频物品', icon: 'icon-cat-id.svg', type: 'all', category: '证件', status: 'all' },
+      { title: '展示中', desc: '查看当前公开展示中的记录', icon: 'icon-stats-pending.svg', type: 'all', category: '全部', status: 'published' },
+      { title: '已完成', desc: '查看已成功找回或认领的信息', icon: 'icon-stats-done.svg', type: 'all', category: '全部', status: 'resolved' }
     ],
     activeQuickAction: '全部信息',
     latestList: [],

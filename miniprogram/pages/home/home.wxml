@@ -27,6 +27,7 @@
             <text class="hero-btn-label">登记寻物</text>
           </view>
           <view class="hero-btn hero-btn-secondary" bindtap="goList">
+            <image class="hero-btn-icon" src="/images/icon-list.svg" mode="aspectFit" />
             <text class="hero-btn-label">浏览台账</text>
           </view>
         </view>
@@ -73,6 +74,7 @@
                 data-status="{{item.status}}"
                 bindtap="handleQuickFilter"
               >
+                <image class="quick-chip-svg" src="/images/{{item.icon}}" mode="aspectFit" />
                 {{item.title}}
               </view>
             </block>
@@ -81,7 +83,10 @@
 
         <view class="quick-grid">
           <view class="quick-card {{activeQuickAction === item.title ? 'quick-card-active' : ''}}" wx:for="{{quickActions}}" wx:key="title" data-title="{{item.title}}" data-type="{{item.type}}" data-category="{{item.category}}" data-status="{{item.status}}" bindtap="handleQuickFilter">
-            <view class="quick-title">{{item.title}}</view>
+            <view class="quick-card-head">
+              <image class="quick-card-icon" src="/images/{{item.icon}}" mode="aspectFit" />
+              <view class="quick-title">{{item.title}}</view>
+            </view>
             <view class="quick-desc">{{item.desc}}</view>
           </view>
         </view>
