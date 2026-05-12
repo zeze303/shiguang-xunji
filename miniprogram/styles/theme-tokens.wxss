@@ -53,6 +53,9 @@
 
   /* 圆角扩展 */
   --radius-xs: 8rpx;
+  --radius-sm: 14rpx;
+  --radius-md: 20rpx;
+  --radius-lg: 24rpx;
   --radius-xl: 32rpx;
 
   --blob-1: rgba(6, 182, 212, 0.45);
@@ -117,6 +120,9 @@
 
   /* 圆角扩展 */
   --radius-xs: 8rpx;
+  --radius-sm: 14rpx;
+  --radius-md: 20rpx;
+  --radius-lg: 24rpx;
   --radius-xl: 32rpx;
 
   --blob-1: rgba(34, 211, 238, 0.35);
