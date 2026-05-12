@@ -23,7 +23,8 @@ Page({
         title: '登记信息',
         desc: '提交寻物或招领登记',
         switchTab: '/pages/publish/publish',
-        icon: '/images/icon-publish.svg'
+        icon: '/images/icon-publish.svg',
+        accent: true
       }
     ]
   },
