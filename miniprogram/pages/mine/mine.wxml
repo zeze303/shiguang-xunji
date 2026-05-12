@@ -39,7 +39,6 @@
 
     <view class="profile-actions">
       <view class="profile-btn profile-btn-light" bindtap="copyOpenid">复制 OpenID</view>
-      <view class="profile-btn" bindtap="handleGetProfile">更新头像昵称</view>
     </view>
   </view>
 
