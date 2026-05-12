@@ -162,13 +162,34 @@
   border-color: rgba(34, 211, 238, 0.35);
 }
 
+.menu-card-accent {
+  border-left: 6rpx solid var(--color-warning);
+  border-radius: var(--radius-md) var(--radius-md) var(--radius-md) 0;
+}
+
 .menu-item {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 18rpx;
-  padding: 24rpx 0;
+  padding: 24rpx 0 24rpx 16rpx;
   border-bottom: 1rpx solid var(--glass-border);
+}
+
+.menu-item-accent {
+  padding-left: 28rpx;
+}
+
+.menu-item-accent::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12rpx;
+  bottom: 12rpx;
+  width: 6rpx;
+  border-radius: 3rpx;
+  background: linear-gradient(180deg, var(--cyan), #5B7CFF);
 }
 
 .menu-main {

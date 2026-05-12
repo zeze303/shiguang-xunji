@@ -15,7 +15,8 @@ Page({
         title: '我的登记',
         desc: '查看登记记录和状态',
         url: '/pages/my-posts/my-posts',
-        icon: '/images/icon-menu-posts.svg'
+        icon: '/images/icon-menu-posts.svg',
+        accent: true
       },
       {
         key: 'publish',

@@ -44,7 +44,7 @@
     <view class="section-title">常用功能</view>
 
     <view
-      class="menu-item"
+      class="menu-item {{item.accent ? 'menu-item-accent' : ''}}"
       wx:for="{{menuList}}"
       wx:key="key"
       data-url="{{item.url}}"
@@ -62,10 +62,10 @@
     </view>
   </view>
 
-  <view class="menu-card admin-card" wx:if="{{isAdmin}}">
+  <view class="menu-card admin-card menu-card-accent" wx:if="{{isAdmin}}">
     <view class="section-title">管理员入口</view>
 
-    <view class="menu-item" bindtap="goAdmin">
+    <view class="menu-item menu-item-accent" bindtap="goAdmin">
       <view class="menu-main">
         <image class="menu-icon" src="/images/icon-menu-admin.svg" mode="aspectFit" />
         <view>
