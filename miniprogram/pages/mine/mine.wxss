@@ -187,10 +187,9 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 12rpx;
-  bottom: 12rpx;
+  top: 0;
+  bottom: 0;
   width: 6rpx;
-  border-radius: 3rpx;
   background: linear-gradient(180deg, var(--cyan), #5B7CFF);
 }
 
