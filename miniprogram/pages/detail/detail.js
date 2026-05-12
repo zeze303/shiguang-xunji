@@ -6,7 +6,8 @@ const {
   getAuditReasonText,
   normalizeStatus,
   ERROR_CODES,
-  getErrorMessage
+  getErrorMessage,
+  CATEGORY_ICON_MAP
 } = require('../../utils/post-config')
 const theme = require('../../utils/theme')
 
@@ -89,8 +90,12 @@ Page({
           ? '/images/icon-status-resolved.svg'
           : ''
     }))
+    const enrichedDetail = detail ? {
+      ...detail,
+      categoryIcon: CATEGORY_ICON_MAP[detail.category] || 'icon-cat-other.svg'
+    } : null
     return {
-      detail,
+      detail: enrichedDetail,
       isOwner: detail ? detail.userId === openid : false,
       isAdmin: admin,
       statusMeta: getStatusMeta(statusKey, detail && detail.auditStatus),

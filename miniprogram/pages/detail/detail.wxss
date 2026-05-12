@@ -100,10 +100,19 @@
 }
 
 .status-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8rpx;
   padding: 10rpx 16rpx;
   border-radius: 12rpx;
   font-size: 24rpx;
   font-weight: 500;
+}
+
+.status-chip-svg {
+  width: 28rpx;
+  height: 28rpx;
+  flex-shrink: 0;
 }
 
 .status-chip-pending {
@@ -317,6 +326,9 @@
 }
 
 .detail-line {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
   margin-top: 12rpx;
   color: var(--text-primary);
   font-size: 26rpx;
@@ -325,6 +337,12 @@
 
 .detail-line:first-child {
   margin-top: 0;
+}
+
+.detail-line-icon {
+  width: 32rpx;
+  height: 32rpx;
+  flex-shrink: 0;
 }
 
 .contact-panel {
@@ -342,6 +360,18 @@
 
 .contact-head {
   margin-bottom: 14rpx;
+}
+
+.contact-label-row {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.contact-label-icon {
+  width: 32rpx;
+  height: 32rpx;
+  flex-shrink: 0;
 }
 
 .contact-label {

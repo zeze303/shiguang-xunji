@@ -20,11 +20,21 @@
 
     <view class="status-panel">
       <view class="status-chip {{detail.status === 'resolved' ? 'status-chip-resolved' : detail.status === 'closed' ? 'status-chip-closed' : detail.status === 'published' ? 'status-chip-published' : 'status-chip-pending'}}">
-        状态：{{statusMeta.label}}
+        <image class="status-chip-svg" src="/images/{{detail.categoryIcon || 'icon-cat-other.svg'}}" mode="aspectFit" />
+        {{statusMeta.label}}
       </view>
-      <view class="status-chip status-chip-category">分类：{{detail.category}}</view>
-      <view class="status-chip status-chip-time">时间：{{detail.time}}</view>
-      <view wx:if="{{isAdmin}}" class="status-chip status-chip-admin">管理员视角</view>
+      <view class="status-chip status-chip-category">
+        <image class="status-chip-svg" src="/images/icon-location.svg" mode="aspectFit" />
+        {{detail.location}}
+      </view>
+      <view class="status-chip status-chip-time">
+        <image class="status-chip-svg" src="/images/icon-time.svg" mode="aspectFit" />
+        {{detail.time}}
+      </view>
+      <view wx:if="{{isAdmin}}" class="status-chip status-chip-admin">
+        <image class="status-chip-svg" src="/images/icon-settings.svg" mode="aspectFit" />
+        管理员
+      </view>
     </view>
 
     <view class="flow-panel">
@@ -67,16 +77,31 @@
     </scroll-view>
 
     <view class="info-panel">
-      <view class="detail-line">物品名称：{{detail.itemName}}</view>
-      <view class="detail-line">地点：{{detail.location}}</view>
-      <view class="detail-line">登记人：{{detail.userName}}</view>
-      <view class="detail-line">登记时间：{{detail.createdAtText || detail.createdAt}}</view>
+      <view class="detail-line">
+        <image class="detail-line-icon" src="/images/{{detail.categoryIcon || 'icon-cat-other.svg'}}" mode="aspectFit" />
+        <text>物品名称：{{detail.itemName}}</text>
+      </view>
+      <view class="detail-line">
+        <image class="detail-line-icon" src="/images/icon-location.svg" mode="aspectFit" />
+        <text>地点：{{detail.location}}</text>
+      </view>
+      <view class="detail-line">
+        <image class="detail-line-icon" src="/images/icon-contact.svg" mode="aspectFit" />
+        <text>登记人：{{detail.userName}}</text>
+      </view>
+      <view class="detail-line">
+        <image class="detail-line-icon" src="/images/icon-time.svg" mode="aspectFit" />
+        <text>登记时间：{{detail.createdAtText || detail.createdAt}}</text>
+      </view>
     </view>
 
     <view class="contact-panel">
       <view class="between contact-head">
-        <view class="contact-label">联系信息</view>
-        <view class="copy-btn" bindtap="copyContact">复制联系信息</view>
+        <view class="contact-label-row">
+          <image class="contact-label-icon" src="/images/icon-phone.svg" mode="aspectFit" />
+          <view class="contact-label">联系信息</view>
+        </view>
+        <view class="copy-btn" bindtap="copyContact">复制</view>
       </view>
       <view class="contact-value">{{detail.contact}}</view>
     </view>
