@@ -472,11 +472,31 @@
   justify-content: center;
   text-align: center;
   box-sizing: border-box;
-  border-radius: 12rpx;
+  border-radius: var(--radius-md);
 }
 
 .action-btn::after {
   border: none;
+}
+
+.action-bar-sticky {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  margin-top: 30rpx;
+  padding-top: 20rpx;
+  background: var(--glass);
+  border-radius: var(--radius-md);
+}
+
+.action-bar-sticky::before {
+  content: '';
+  position: absolute;
+  top: -20rpx;
+  left: 0;
+  right: 0;
+  height: 20rpx;
+  background: linear-gradient(to top, transparent, transparent);
 }
 
 .default-btn {

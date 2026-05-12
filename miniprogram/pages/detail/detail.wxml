@@ -111,7 +111,8 @@
       <view class="detail-desc">{{detail.description || '暂无详细描述'}}</view>
     </view>
 
-    <button wx:if="{{!isOwner}}" class="primary-btn action-btn mt-30" bindtap="contactUser">联系对方</button>
+    <view class="action-bar-sticky">
+    <button wx:if="{{!isOwner}}" class="primary-btn action-btn mt-20" bindtap="contactUser">联系对方</button>
 
     <block wx:if="{{isOwner || isAdmin}}">
       <view class="action-group action-group-main mt-20">
