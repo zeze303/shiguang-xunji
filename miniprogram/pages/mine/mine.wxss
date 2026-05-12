@@ -122,36 +122,37 @@
 }
 
 .nickname-row {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10rpx;
 }
 
-.nickname-wrap {
-  display: flex;
+.nickname-display {
+  display: inline-flex;
   align-items: center;
+  gap: 8rpx;
   padding: 4rpx 12rpx 4rpx 0;
   border-radius: 8rpx;
-  transition: background 0.2s ease;
 }
 
-.nickname-wrap:active {
+.nickname-display:active {
   background: var(--surface-muted);
 }
 
+.nickname-text {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
 .nickname-input {
-  flex: 0 1 auto;
-  min-width: 80rpx;
-  max-width: 300rpx;
   font-size: 32rpx;
   font-weight: 700;
   color: var(--text-primary);
   background: transparent;
   border: none;
-  padding: 0;
+  padding: 4rpx 0;
   min-height: auto;
   line-height: 1.4;
-  width: auto;
 }
 
 .nickname-input::after {
@@ -159,11 +160,10 @@
 }
 
 .nickname-edit-icon {
-  width: 32rpx;
-  height: 32rpx;
+  width: 48rpx;
+  height: 48rpx;
   opacity: 0.5;
   flex-shrink: 0;
-  margin-left: 6rpx;
 }
 
 .profile-tip {

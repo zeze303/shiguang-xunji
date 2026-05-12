@@ -29,11 +29,12 @@
       </button>
 
       <view class="profile-info">
-        <view class="nickname-row">
-          <view class="nickname-wrap">
-            <input type="nickname" class="nickname-input" value="{{userInfo ? userInfo.nickName : '微信用户'}}" placeholder="请输入昵称" bindblur="onNicknameBlur" />
+        <view class="nickname-row" bindtap="startEditNickname">
+          <view wx:if="{{!editingNickname}}" class="nickname-display">
+            <text class="nickname-text">{{userInfo ? userInfo.nickName : '微信用户'}}</text>
             <image class="nickname-edit-icon" src="/images/icon-edit.svg" mode="aspectFit" />
           </view>
+          <input wx:else type="nickname" class="nickname-input" value="{{userInfo ? userInfo.nickName : '微信用户'}}" placeholder="请输入昵称" bindblur="onNicknameBlur" focus="true" />
         </view>
         <view class="profile-tip">查看我的登记和处理状态</view>
 

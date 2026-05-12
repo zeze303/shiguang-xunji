@@ -9,6 +9,7 @@ Page({
     openid: '',
     isAdmin: false,
     pageScrollTop: 0,
+    editingNickname: false,
     menuList: [
       {
         key: 'posts',
