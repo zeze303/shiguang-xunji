@@ -19,6 +19,15 @@ const AUDIT_STATUS = {
 
 const CATEGORY_OPTIONS = ['证件', '钥匙', '书本', '电子产品', '其他']
 const CATEGORY_WITH_ALL = ['全部'].concat(CATEGORY_OPTIONS)
+
+const CATEGORY_ICON_MAP = {
+  '证件': 'icon-cat-id.svg',
+  '钥匙': 'icon-cat-key.svg',
+  '书本': 'icon-cat-book.svg',
+  '电子产品': 'icon-cat-electronics.svg',
+  '其他': 'icon-cat-other.svg',
+  '生活用品': 'icon-cat-daily.svg'
+}
 const CONTACT_TYPE_OPTIONS = ['微信', 'QQ', '电话', '其他']
 
 const SEARCH_FIELDS = ['title', 'itemName', 'location', 'description', 'contact']
@@ -272,6 +281,7 @@ module.exports = {
   POST_STATUS,
   AUDIT_STATUS,
   CATEGORY_OPTIONS,
+  CATEGORY_ICON_MAP,
   CATEGORY_WITH_ALL,
   CONTACT_TYPE_OPTIONS,
   QUICK_FILTERS,

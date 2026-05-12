@@ -73,41 +73,94 @@
   font-weight: 600;
 }
 
-.category-scroll {
+.cat-scroll {
   white-space: nowrap;
-  margin-bottom: 22rpx;
+  margin-bottom: 16rpx;
 }
 
-.category-list {
+.cat-list {
   display: inline-flex;
   padding-bottom: 4rpx;
 }
 
-.category-chip {
-  padding: 12rpx 18rpx;
-  background: var(--glass);
-  border-radius: 10rpx;
+.cat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 10rpx 20rpx;
+  border-radius: var(--radius-md);
   margin-right: 10rpx;
   color: var(--text-primary);
-  font-size: 24rpx;
-  border: 1rpx solid var(--glass-border);
+  font-size: var(--font-sm);
+  border: 1.5rpx solid var(--glass-border);
+  background: transparent;
 }
 
-.category-chip-active {
-  background: rgba(8, 145, 178, 0.12);
+.cat-chip-icon {
+  width: 28rpx;
+  height: 28rpx;
+  flex-shrink: 0;
+}
+
+.cat-chip-active {
   color: var(--cyan);
+  border-color: var(--cyan);
+  background: rgba(8, 145, 178, 0.06);
   font-weight: 600;
-  border-color: rgba(8, 145, 178, 0.35);
 }
 
-.page-root.theme-dark .category-chip-active {
-  background: rgba(34, 211, 238, 0.12);
-  border-color: rgba(34, 211, 238, 0.35);
+.page-root.theme-dark .cat-chip-active {
+  border-color: var(--cyan);
+  background: rgba(34, 211, 238, 0.06);
+}
+
+.status-scroll {
+  white-space: nowrap;
+  margin-bottom: 22rpx;
+}
+
+.status-list {
+  display: inline-flex;
+  padding-bottom: 4rpx;
+}
+
+.status-tag {
+  padding: 6rpx 16rpx;
+  margin-right: 8rpx;
+  border-radius: 999rpx;
+  color: var(--text-dim);
+  font-size: 22rpx;
+  border: 1rpx solid transparent;
+}
+
+.status-tag-active {
+  color: var(--text-primary);
+  font-weight: 600;
+  border-color: var(--glass-border);
+  background: var(--glass);
 }
 
 .post-card {
   margin-bottom: 20rpx;
   border-color: rgba(8, 145, 178, 0.12);
+}
+
+.post-inner {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+}
+
+.post-cat-icon {
+  width: 44rpx;
+  height: 44rpx;
+  flex-shrink: 0;
+  margin-top: 4rpx;
+}
+
+.post-body {
+  flex: 1;
+  min-width: 0;
 }
 
 .page-root.theme-dark .post-card {

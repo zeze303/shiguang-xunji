@@ -1,7 +1,7 @@
 const { fetchPostsCloud } = require('../../utils/cloud')
 const { getLastCreatedPostId, getHighlightRemainingTime } = require('../../utils/storage')
 const { updateTabBar } = require('../../utils/tabbar')
-const { CATEGORY_WITH_ALL, QUICK_FILTERS, matchPostKeyword, normalizeKeyword, getStatusMeta, normalizeStatus } = require('../../utils/post-config')
+const { CATEGORY_WITH_ALL, QUICK_FILTERS, matchPostKeyword, normalizeKeyword, getStatusMeta, normalizeStatus, CATEGORY_ICON_MAP } = require('../../utils/post-config')
 const theme = require('../../utils/theme')
 
 Page({
@@ -14,6 +14,10 @@ Page({
     activeCategory: '全部',
     statusFilter: 'all',
     categories: CATEGORY_WITH_ALL,
+    categoriesWithIcons: CATEGORY_WITH_ALL.filter(c => c !== '全部').map(c => ({
+      name: c,
+      icon: CATEGORY_ICON_MAP[c] || 'icon-cat-other.svg'
+    })),
     quickFilters: QUICK_FILTERS,
     emptyTitle: '暂无内容',
     emptyDesc: '换个筛选条件试试。',
@@ -86,7 +90,8 @@ Page({
         statusText: statusMeta.label,
         statusTone: statusMeta.tone,
         auditFailed: item.auditStatus === 'rejected',
-        auditReason: item.auditRemark || ''
+        auditReason: item.auditRemark || '',
+        categoryIcon: CATEGORY_ICON_MAP[item.category] || 'icon-cat-other.svg'
       }
     })
   },

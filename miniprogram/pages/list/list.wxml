@@ -16,48 +16,56 @@
     <view class="tab-item {{activeTab === 'lost' ? 'tab-active' : ''}}" data-tab="lost" bindtap="switchTab">寻物</view>
   </view>
 
-  <scroll-view scroll-x class="category-scroll" enable-flex="true">
-    <view class="category-list">
-      <view class="category-chip {{activeCategory === item ? 'category-chip-active' : ''}}" wx:for="{{categories}}" wx:key="*this" data-category="{{item}}" bindtap="switchCategory">
-        {{item}}
+  <scroll-view scroll-x class="cat-scroll" enable-flex="true">
+    <view class="cat-list">
+      <view class="cat-chip {{activeCategory === '全部' ? 'cat-chip-active' : ''}}" data-category="全部" bindtap="switchCategory">全部</view>
+      <view class="cat-chip {{activeCategory === item.name ? 'cat-chip-active' : ''}}" wx:for="{{categoriesWithIcons}}" wx:key="name" data-category="{{item.name}}" bindtap="switchCategory">
+        <image class="cat-chip-icon" src="/images/{{item.icon}}" mode="aspectFit" />
+        <text>{{item.name}}</text>
       </view>
     </view>
   </scroll-view>
 
-  <scroll-view scroll-x class="category-scroll status-scroll" enable-flex="true">
-    <view class="category-list">
-      <view class="category-chip {{statusFilter === item.key ? 'category-chip-active' : ''}}" wx:for="{{quickFilters}}" wx:key="key" data-status="{{item.key}}" bindtap="switchStatus">
+  <scroll-view scroll-x class="status-scroll" enable-flex="true">
+    <view class="status-list">
+      <view class="status-tag {{statusFilter === item.key ? 'status-tag-active' : ''}}" wx:for="{{quickFilters}}" wx:key="key" data-status="{{item.key}}" bindtap="switchStatus">
         {{item.label}}
       </view>
     </view>
   </scroll-view>
 
   <view class="card post-card {{item.isNew ? 'new-post-card' : ''}}" wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" bindtap="goDetail">
-    <view class="between post-head">
-      <view class="post-title">{{item.title}}</view>
-      <view class="post-head-right">
-        <view wx:if="{{item.isNew}}" class="new-badge">最新</view>
-        <view class="tag {{item.type === 'found' ? 'tag-green' : 'tag-orange'}}">{{item.type === 'found' ? '招领' : '寻物'}}</view>
+    <view class="post-inner">
+      <image class="post-cat-icon" src="/images/icon-cat-other.svg" mode="aspectFit" wx:if="{{!item.categoryIcon}}" />
+      <image class="post-cat-icon" src="/images/{{item.categoryIcon}}" mode="aspectFit" wx:else />
+      <view class="post-body">
+        <view class="between post-head">
+          <view class="post-title">{{item.title}}</view>
+          <view class="post-head-right">
+            <view wx:if="{{item.isNew}}" class="new-badge">最新</view>
+            <view class="tag {{item.type === 'found' ? 'tag-green' : 'tag-orange'}}">{{item.type === 'found' ? '招领' : '寻物'}}</view>
+          </view>
+        </view>
+
+        <view class="post-meta">
+          <text>{{item.category}}</text>
+          <text class="dot">·</text>
+          <text>{{item.location}}</text>
+          <text class="dot">·</text>
+          <text>{{item.time}}</text>
+        </view>
+
+        <view class="post-desc">{{item.description}}</view>
+
+        <view class="image-grid" wx:if="{{item.images && item.images.length}}">
+          <image class="list-image" wx:for="{{item.images}}" wx:key="*this" src="{{item}}" mode="aspectFill" />
+        </view>
+
+        <view class="between mt-20 status-row">
+          <view class="text-muted">{{item.userName}}</view>
+          <view class="status status-{{item.statusTone}}">{{item.statusText}}</view>
+        </view>
       </view>
-    </view>
-
-    <view class="post-meta">
-      <text>{{item.category}}</text>
-      <text class="dot">·</text>
-      <text>{{item.location}}</text>
-      <text class="dot">·</text>
-      <text>{{item.time}}</text>
-    </view>
-
-    <view class="post-desc">{{item.description}}</view>
-
-    <view class="image-grid" wx:if="{{item.images && item.images.length}}">
-      <image class="list-image" wx:for="{{item.images}}" wx:key="*this" src="{{item}}" mode="aspectFill" />
-    </view>
-
-    <view class="between mt-20 status-row">
-      <view class="text-muted">{{item.userName}}</view>
-      <view class="status status-{{item.statusTone}}">{{item.statusText}}</view>
     </view>
   </view>
 
