@@ -71,6 +71,10 @@ Page({
     this.saveProfile({ avatarUrl })
   },
 
+  startEditNickname() {
+    this.setData({ editingNickname: true })
+  },
+
   onNicknameBlur(e) {
     const nickName = e.detail.value
     const info = this.data.userInfo || {}
