@@ -65,6 +65,10 @@
           <view class="text-muted">{{item.userName}}</view>
           <view class="status status-{{item.statusTone}}">{{item.statusText}}</view>
         </view>
+        <view class="between mt-20 action-row">
+          <view></view>
+          <view class="btn-detail" data-id="{{item.id}}" bindtap="goDetail">查看详情</view>
+        </view>
       </view>
     </view>
   </view>
