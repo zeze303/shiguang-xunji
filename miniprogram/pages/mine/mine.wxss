@@ -128,10 +128,9 @@
 }
 
 .nickname-wrap {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 8rpx;
-  padding: 6rpx 12rpx 6rpx 0;
+  padding: 4rpx 12rpx 4rpx 0;
   border-radius: 8rpx;
   transition: background 0.2s ease;
 }
@@ -141,7 +140,9 @@
 }
 
 .nickname-input {
-  display: inline;
+  flex: 0 1 auto;
+  min-width: 80rpx;
+  max-width: 300rpx;
   font-size: 32rpx;
   font-weight: 700;
   color: var(--text-primary);
@@ -150,6 +151,7 @@
   padding: 0;
   min-height: auto;
   line-height: 1.4;
+  width: auto;
 }
 
 .nickname-input::after {
@@ -157,10 +159,11 @@
 }
 
 .nickname-edit-icon {
-  width: 26rpx;
-  height: 26rpx;
-  opacity: 0.45;
+  width: 32rpx;
+  height: 32rpx;
+  opacity: 0.5;
   flex-shrink: 0;
+  margin-left: 6rpx;
 }
 
 .profile-tip {
