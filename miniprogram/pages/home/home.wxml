@@ -18,43 +18,43 @@
         <view class="hero-desc">统一展示、快速检索、状态留痕，让每一条线索都能被更快看见。</view>
 
         <view class="hero-actions">
-          <view class="hero-btn hero-btn-primary" data-type="found" bindtap="handlePublish">快速登记</view>
-          <view class="hero-btn hero-btn-secondary" bindtap="goList">浏览台账</view>
+          <view class="hero-btn hero-btn-primary" data-type="found" bindtap="handlePublish">
+            <image class="hero-btn-icon" src="/images/icon-home-found.svg" mode="aspectFit" />
+            <text class="hero-btn-label">登记招领</text>
+          </view>
+          <view class="hero-btn hero-btn-accent" data-type="lost" bindtap="handlePublish">
+            <image class="hero-btn-icon" src="/images/icon-home-lost.svg" mode="aspectFit" />
+            <text class="hero-btn-label">登记寻物</text>
+          </view>
+          <view class="hero-btn hero-btn-secondary" bindtap="goList">
+            <text class="hero-btn-label">浏览台账</text>
+          </view>
         </view>
 
         <view class="stats-grid">
           <view class="stats-item">
+            <image class="stats-icon" src="/images/icon-stats-posted.svg" mode="aspectFit" />
             <view class="stats-value">{{stats.total}}</view>
             <view class="stats-label">累计展示</view>
           </view>
           <view class="stats-item">
+            <image class="stats-icon" src="/images/icon-home-found.svg" mode="aspectFit" />
             <view class="stats-value">{{stats.published}}</view>
             <view class="stats-label">展示中</view>
           </view>
           <view class="stats-item">
+            <image class="stats-icon" src="/images/icon-stats-done.svg" mode="aspectFit" />
             <view class="stats-value">{{stats.resolved}}</view>
             <view class="stats-label">已完成</view>
           </view>
           <view class="stats-item">
+            <image class="stats-icon" src="/images/icon-stats-pending.svg" mode="aspectFit" />
             <view class="stats-value">{{stats.reviewing}}</view>
             <view class="stats-label">审核中</view>
           </view>
         </view>
       </view>
     </view>
-
-    <swiper class="home-swiper" indicator-dots autoplay circular interval="4000" duration="400">
-      <swiper-item wx:for="{{bannerList}}" wx:key="key">
-        <view class="banner-card">
-          <view class="banner-head">
-            <image class="banner-icon" src="{{item.icon}}" mode="aspectFit" />
-            <view class="banner-title">{{item.title}}</view>
-          </view>
-          <view class="banner-desc">{{item.desc}}</view>
-          <view class="banner-btn" data-type="{{item.type}}" bindtap="handlePublish">{{item.buttonText}}</view>
-        </view>
-      </swiper-item>
-    </swiper>
 
       <view class="section-block">
         <view class="between section-head">

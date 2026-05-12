@@ -7,24 +7,7 @@ Page({
   data: {
     themeClass: 'theme-light',
     themeToggleLabel: '浅色',
-    bannerList: [
-      {
-        key: 'lost',
-        title: '快速登记寻物信息',
-        desc: '丢了证件、钥匙、耳机？尽快填写时间地点，帮助大家一起寻找。',
-        buttonText: '去登记寻物',
-        type: 'lost',
-        icon: '/images/icon-home-lost.svg'
-      },
-      {
-        key: 'found',
-        title: '一键登记失物招领',
-        desc: '捡到物品后及时登记，让失主更快看到你的线索。',
-        buttonText: '去登记招领',
-        type: 'found',
-        icon: '/images/icon-home-found.svg'
-      }
-    ],
+
     quickActions: [
       { title: '全部信息', desc: '查看最新失物招领信息', type: 'all', category: '全部', status: 'all' },
       { title: '证件专区', desc: '身份证、校园卡等高频物品', type: 'all', category: '证件', status: 'all' },
