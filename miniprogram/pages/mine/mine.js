@@ -62,15 +62,22 @@ Page({
   },
 
   async handleGetProfile() {
+    if (this.data._profileLock) {
+      wx.showToast({ title: '操作过于频繁，请稍后再试', icon: 'none' })
+      return
+    }
+    this.setData({ _profileLock: true })
     try {
       const profile = await wx.getUserProfile({ desc: '用于展示昵称和头像' })
       const saved = await saveUserProfileCloud(profile.userInfo || {})
-      this.setData({ userInfo: saved })
+      this.setData({ userInfo: saved, _profileLock: false })
       wx.showToast({ title: '资料已更新', icon: 'success' })
     } catch (error) {
       if (error && /cancel/i.test(String(error.errMsg || error.message || ''))) {
+        this.setData({ _profileLock: false })
         return
       }
+      this.setData({ _profileLock: false })
       console.error('获取头像昵称失败：', error)
       wx.showToast({ title: '更新失败', icon: 'none' })
     }
