@@ -46,15 +46,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 128rpx;
-  height: 128rpx;
-  flex: 0 0 128rpx;
+  width: 140rpx;
+  height: 140rpx;
+  flex: 0 0 140rpx;
   padding: 0;
   margin: 0;
   background: transparent;
   border: none;
   border-radius: 50%;
-  overflow: hidden;
+  overflow: visible;
   line-height: 1;
 }
 
@@ -62,10 +62,34 @@
   border: none;
 }
 
+.avatar-btn:active .avatar {
+  opacity: 0.75;
+}
+
 .avatar-wrap {
+  position: relative;
   width: 112rpx;
   height: 112rpx;
   flex: 0 0 112rpx;
+}
+
+.avatar-overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 40rpx;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 0 56rpx 56rpx;
+}
+
+.avatar-overlay-icon {
+  width: 22rpx;
+  height: 22rpx;
+  opacity: 0.92;
 }
 
 
@@ -103,6 +127,19 @@
   gap: 10rpx;
 }
 
+.nickname-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 6rpx 12rpx 6rpx 0;
+  border-radius: 8rpx;
+  transition: background 0.2s ease;
+}
+
+.nickname-wrap:active {
+  background: var(--surface-muted);
+}
+
 .nickname-input {
   display: inline;
   font-size: 32rpx;
@@ -119,10 +156,10 @@
   border: none;
 }
 
-.nickname-hint {
-  font-size: 20rpx;
-  color: var(--text-dim);
-  opacity: 0.6;
+.nickname-edit-icon {
+  width: 26rpx;
+  height: 26rpx;
+  opacity: 0.45;
   flex-shrink: 0;
 }
 

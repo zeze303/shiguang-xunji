@@ -22,13 +22,18 @@
             src="/images/icon-avatar-default.svg"
             mode="aspectFill"
           />
+          <view class="avatar-overlay">
+            <image class="avatar-overlay-icon" src="/images/icon-camera.svg" mode="aspectFit" />
+          </view>
         </view>
       </button>
 
       <view class="profile-info">
         <view class="nickname-row">
-          <input type="nickname" class="nickname-input" value="{{userInfo ? userInfo.nickName : '微信用户'}}" placeholder="请输入昵称" bindblur="onNicknameBlur" />
-          <view class="nickname-hint">点击昵称修改</view>
+          <view class="nickname-wrap">
+            <input type="nickname" class="nickname-input" value="{{userInfo ? userInfo.nickName : '微信用户'}}" placeholder="请输入昵称" bindblur="onNicknameBlur" />
+            <image class="nickname-edit-icon" src="/images/icon-edit.svg" mode="aspectFit" />
+          </view>
         </view>
         <view class="profile-tip">查看我的登记和处理状态</view>
 
