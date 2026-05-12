@@ -12,16 +12,16 @@
 
   <scroll-view scroll-x class="filter-scroll" enable-flex="true">
     <view class="filter-list filter-tabs">
-      <view class="tab-item {{activeTab === 'all' ? 'tab-active' : ''}}" data-tab="all" bindtap="switchTab">全部</view>
-      <view class="tab-item {{activeTab === 'pending' ? 'tab-active' : ''}}" data-tab="pending" bindtap="switchTab">审核中</view>
-      <view class="tab-item {{activeTab === 'published' ? 'tab-active' : ''}}" data-tab="published" bindtap="switchTab">展示中</view>
-      <view class="tab-item {{activeTab === 'rejected' ? 'tab-active' : ''}}" data-tab="rejected" bindtap="switchTab">未通过</view>
-      <view class="tab-item {{activeTab === 'resolved' ? 'tab-active' : ''}}" data-tab="resolved" bindtap="switchTab">已完成</view>
-      <view class="tab-item {{activeTab === 'closed' ? 'tab-active' : ''}}" data-tab="closed" bindtap="switchTab">已关闭</view>
+      <view class="tab-item-wrapper"><view class="tab-item {{activeTab === 'all' ? 'tab-item-active' : ''}}" data-tab="all" bindtap="switchTab">全部</view></view>
+      <view class="tab-item-wrapper"><view class="tab-item {{activeTab === 'pending' ? 'tab-item-active' : ''}}" data-tab="pending" bindtap="switchTab">审核中</view></view>
+      <view class="tab-item-wrapper"><view class="tab-item {{activeTab === 'published' ? 'tab-item-active' : ''}}" data-tab="published" bindtap="switchTab">展示中</view></view>
+      <view class="tab-item-wrapper"><view class="tab-item {{activeTab === 'rejected' ? 'tab-item-active' : ''}}" data-tab="rejected" bindtap="switchTab">未通过</view></view>
+      <view class="tab-item-wrapper"><view class="tab-item {{activeTab === 'resolved' ? 'tab-item-active' : ''}}" data-tab="resolved" bindtap="switchTab">已完成</view></view>
+      <view class="tab-item-wrapper"><view class="tab-item {{activeTab === 'closed' ? 'tab-item-active' : ''}}" data-tab="closed" bindtap="switchTab">已关闭</view></view>
     </view>
   </scroll-view>
 
-  <view class="card post-card" wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" bindtap="goDetail">
+  <view class="card post-card" wx:for="{{list}}" wx:key="id" data-id="{{item.id}}" data-audit="{{item.auditStatus || 'all'}}" bindtap="goDetail">
     <view class="between post-head">
       <view class="post-title">{{item.title}}</view>
       <view class="post-head-right">
