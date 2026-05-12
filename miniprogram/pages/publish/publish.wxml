@@ -1,0 +1,105 @@
+<view class="page-root {{themeClass}}">
+<view class="container publish-page page-top-safe">
+  <view class="publish-hero card">
+    <view class="publish-hero-kicker">FAST CREATE</view>
+    <view class="publish-hero-title">登记失物线索</view>
+    <view class="publish-hero-desc">按步骤补全信息、上传图片并填写联系方式，系统会自动进入审核与展示流程。</view>
+  </view>
+
+  <view class="card publish-card">
+    <view class="openid-banner openid-banner-loading" wx:if="{{checkingOpenId}}">正在获取 OpenID...</view>
+    <view class="openid-banner" wx:elif="{{!openidReady}}">
+      <view class="openid-banner-title">当前未获取到 OpenID</view>
+      <view class="openid-banner-desc">暂时无法登记，请稍后再试，或去“我的”页面查看。</view>
+      <view class="openid-banner-action" bindtap="retryOpenId">重试获取 OpenID</view>
+    </view>
+    <view class="draft-banner" wx:if="{{hasDraft}}">
+      <view>
+        <view class="draft-banner-title">已保存草稿</view>
+        <view class="draft-banner-time">保存于 {{draftTimeText || '刚刚'}}</view>
+      </view>
+      <view class="draft-banner-action" bindtap="clearDraft">清空草稿</view>
+    </view>
+
+    <view class="section-title">选择登记类型</view>
+    <view class="section-subtitle">先确定是“我捡到了”还是“我丢失了”，后续流程会自动匹配。</view>
+
+    <view class="tabs">
+      <view class="tab-item {{type === 'found' ? 'tab-active' : ''}}" data-type="found" bindtap="switchType">我捡到了</view>
+      <view class="tab-item {{type === 'lost' ? 'tab-active' : ''}}" data-type="lost" bindtap="switchType">我丢失了</view>
+    </view>
+
+    <input class="input publish-input {{errors.title ? 'input-error' : ''}}" value="{{form.title}}" placeholder="请输入标题" placeholder-class="input-placeholder" data-field="title" bindinput="onInput" />
+    <view wx:if="{{errors.title}}" class="error-text">{{errors.title}}</view>
+
+    <input class="input publish-input {{errors.itemName ? 'input-error' : ''}}" value="{{form.itemName}}" placeholder="请输入物品名称" placeholder-class="input-placeholder" data-field="itemName" bindinput="onInput" />
+    <view wx:if="{{errors.itemName}}" class="error-text">{{errors.itemName}}</view>
+
+    <picker mode="selector" range="{{categories}}" value="{{categoryIndex}}" bindchange="pickCategory">
+      <view class="input publish-input picker-input">物品分类：{{categories[categoryIndex]}}</view>
+    </picker>
+
+    <input class="input publish-input {{errors.location ? 'input-error' : ''}}" value="{{form.location}}" placeholder="请输入地点" placeholder-class="input-placeholder" data-field="location" bindinput="onInput" />
+    <view wx:if="{{errors.location}}" class="error-text">{{errors.location}}</view>
+
+    <view class="time-row">
+      <picker mode="date" value="{{form.date}}" bindchange="pickDate">
+        <view class="input publish-input picker-input time-picker {{errors.time ? 'input-error' : ''}}">日期：{{form.date}}</view>
+      </picker>
+      <picker mode="time" value="{{form.clock}}" bindchange="pickClock">
+        <view class="input publish-input picker-input time-picker {{errors.time ? 'input-error' : ''}}">时间：{{form.clock}}</view>
+      </picker>
+    </view>
+    <view wx:if="{{errors.time}}" class="error-text">{{errors.time}}</view>
+
+    <view class="contact-box">
+      <view class="contact-title">联系方式</view>
+
+      <picker mode="selector" range="{{contactTypes}}" value="{{contactTypeIndex}}" bindchange="pickContactType">
+        <view class="input publish-input picker-input {{errors.contactType ? 'input-error' : ''}}">联系方式类型：{{contactTypes[contactTypeIndex]}}</view>
+      </picker>
+
+      <input wx:if="{{form.contactType === '其他'}}" class="input publish-input {{errors.contactType ? 'input-error' : ''}}" value="{{form.contactCustomType}}" placeholder="请输入自定义联系方式类型" placeholder-class="input-placeholder" data-field="contactCustomType" bindinput="onInput" />
+      <view wx:if="{{errors.contactType}}" class="error-text">{{errors.contactType}}</view>
+
+      <input class="input publish-input {{errors.contactValue ? 'input-error' : ''}}" value="{{form.contactValue}}" placeholder="请输入联系方式内容" placeholder-class="input-placeholder" data-field="contactValue" bindinput="onInput" />
+      <view wx:if="{{errors.contactValue}}" class="error-text">{{errors.contactValue}}</view>
+    </view>
+
+    <textarea class="input textarea publish-input publish-textarea" value="{{form.description}}" placeholder="请输入详细描述" placeholder-class="input-placeholder" data-field="description" bindinput="onInput"></textarea>
+    <view wx:if="{{draftTip}}" class="error-text">{{draftTip}}</view>
+  </view>
+
+  <view class="card publish-note-card">
+    <view class="publish-note-title">登记须知</view>
+    <view class="publish-note-item">· 标题尽量写清物品名称和场景，方便检索。</view>
+    <view class="publish-note-item">· 联系方式建议填写可长期联系到你的渠道。</view>
+    <view class="publish-note-item">· 图片最多 3 张，优先上传清晰特征图。</view>
+  </view>
+
+  <view class="card upload-card">
+    <view class="upload-header between">
+      <view class="upload-title">物品图片</view>
+      <view class="upload-tip">最多上传 3 张</view>
+    </view>
+
+    <view class="upload-entry" bindtap="chooseImage" wx:if="{{imageList.length < 3}}">
+      <view class="upload-entry-icon" aria-hidden="true"></view>
+      <view class="upload-entry-text">添加图片</view>
+    </view>
+
+    <view class="image-grid" wx:if="{{imageList.length}}">
+      <view class="image-card" wx:for="{{imageList}}" wx:key="*this">
+        <image class="preview-image" src="{{item}}" mode="aspectFill" data-url="{{item}}" bindtap="previewImage" />
+        <view class="image-mask">预览</view>
+        <view class="remove-image" data-index="{{index}}" bindtap="removeImage">×</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="publish-bottom-safe"></view>
+  <view class="publish-fixed-bar">
+    <button class="primary-btn publish-fixed-btn {{(!openidReady || checkingOpenId) ? 'publish-fixed-btn-disabled' : ''}}" loading="{{submitting}}" disabled="{{submitting || !openidReady || checkingOpenId}}" bindtap="submitForm">{{checkingOpenId ? '检测中...' : (!openidReady ? '暂不可提交' : '提交登记')}}</button>
+  </view>
+</view>
+</view>

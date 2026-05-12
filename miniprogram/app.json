@@ -1,0 +1,47 @@
+{
+  "darkmode": true,
+  "themeLocation": "theme.json",
+  "pages": [
+    "pages/home/home",
+    "pages/list/list",
+    "pages/publish/publish",
+    "pages/mine/mine",
+    "pages/detail/detail",
+    "pages/my-posts/my-posts",
+    "pages/admin/admin"
+  ],
+  "window": {
+    "navigationBarTitleText": "拾光循迹",
+    "navigationBarBackgroundColor": "@navBgColor",
+    "navigationBarTextStyle": "@navTxtStyle",
+    "backgroundColor": "@pageBgColor",
+    "backgroundTextStyle": "@bgTxtStyle"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "@tabFontColor",
+    "selectedColor": "@tabSelectedColor",
+    "backgroundColor": "@tabBgColor",
+    "borderStyle": "@tabBorderStyle",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/list/list",
+        "text": "列表"
+      },
+      {
+        "pagePath": "pages/publish/publish",
+        "text": "登记"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

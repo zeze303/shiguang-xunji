@@ -1,0 +1,125 @@
+<view class="page-root {{themeClass}}">
+  <view class="container page-top-safe home-page">
+    <view class="hero-card">
+      <view class="hero-aurora" aria-hidden="true">
+        <view class="hero-blob hero-blob-1"></view>
+        <view class="hero-blob hero-blob-2"></view>
+        <view class="hero-blob hero-blob-3"></view>
+        <view class="hero-grid"></view>
+      </view>
+      <view class="hero-shimmer" aria-hidden="true"></view>
+      <view class="hero-theme-row">
+        <view class="hero-theme-chip" bindtap="onThemeFabTap">{{themeToggleLabel}}</view>
+      </view>
+      <view class="hero-inner">
+        <view class="hero-kicker">SGXX · CAMPUS LEDGER</view>
+        <view class="hero-title">拾光循迹</view>
+        <view class="hero-subtitle">校园失物招领平台。</view>
+        <view class="hero-desc">统一展示、快速检索、状态留痕，让每一条线索都能被更快看见。</view>
+
+        <view class="hero-actions">
+          <view class="hero-btn hero-btn-primary" data-type="found" bindtap="handlePublish">快速登记</view>
+          <view class="hero-btn hero-btn-secondary" bindtap="goList">浏览台账</view>
+        </view>
+
+        <view class="stats-grid">
+          <view class="stats-item">
+            <view class="stats-value">{{stats.total}}</view>
+            <view class="stats-label">累计展示</view>
+          </view>
+          <view class="stats-item">
+            <view class="stats-value">{{stats.published}}</view>
+            <view class="stats-label">展示中</view>
+          </view>
+          <view class="stats-item">
+            <view class="stats-value">{{stats.resolved}}</view>
+            <view class="stats-label">已完成</view>
+          </view>
+          <view class="stats-item">
+            <view class="stats-value">{{stats.reviewing}}</view>
+            <view class="stats-label">审核中</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <swiper class="home-swiper" indicator-dots autoplay circular interval="4000" duration="400">
+      <swiper-item wx:for="{{bannerList}}" wx:key="key">
+        <view class="banner-card">
+          <view class="banner-head">
+            <image class="banner-icon" src="{{item.icon}}" mode="aspectFit" />
+            <view class="banner-title">{{item.title}}</view>
+          </view>
+          <view class="banner-desc">{{item.desc}}</view>
+          <view class="banner-btn" data-type="{{item.type}}" bindtap="handlePublish">{{item.buttonText}}</view>
+        </view>
+      </swiper-item>
+    </swiper>
+
+      <view class="section-block">
+        <view class="between section-head">
+          <view class="section-title">快捷筛选</view>
+          <view class="section-link" bindtap="goList">查看全部</view>
+        </view>
+
+        <scroll-view scroll-x class="quick-chip-scroll" enable-flex="true" show-scrollbar="false">
+          <view class="quick-chip-list">
+            <block wx:for="{{quickActions}}" wx:key="title">
+              <view
+                class="quick-chip {{activeQuickAction === item.title ? 'quick-chip-active' : ''}}"
+                data-title="{{item.title}}"
+                data-type="{{item.type}}"
+                data-category="{{item.category}}"
+                data-status="{{item.status}}"
+                bindtap="handleQuickFilter"
+              >
+                {{item.title}}
+              </view>
+            </block>
+          </view>
+        </scroll-view>
+
+        <view class="quick-grid">
+          <view class="quick-card {{activeQuickAction === item.title ? 'quick-card-active' : ''}}" wx:for="{{quickActions}}" wx:key="title" data-title="{{item.title}}" data-type="{{item.type}}" data-category="{{item.category}}" data-status="{{item.status}}" bindtap="handleQuickFilter">
+            <view class="quick-title">{{item.title}}</view>
+            <view class="quick-desc">{{item.desc}}</view>
+          </view>
+        </view>
+      </view>
+
+
+    <view class="section-block">
+      <view class="between section-head">
+        <view>
+          <view class="section-title">最新信息</view>
+          <view class="section-subtitle">实时线索流</view>
+        </view>
+        <view class="section-link" bindtap="goList">更多</view>
+      </view>
+
+      <view class="latest-card" wx:for="{{latestList}}" wx:key="id" data-id="{{item.id}}" bindtap="goDetail">
+        <view class="latest-rail {{item.type === 'found' ? 'latest-rail-found' : 'latest-rail-lost'}}"></view>
+        <view class="latest-main">
+          <view class="between latest-head">
+            <view class="latest-title">{{item.title}}</view>
+            <view class="tag {{item.type === 'found' ? 'tag-green' : 'tag-orange'}}">{{item.type === 'found' ? '招领' : '寻物'}}</view>
+          </view>
+          <view class="latest-meta">{{item.category}} · {{item.location}} · {{item.time}}</view>
+          <view class="latest-desc">{{item.description}}</view>
+          <view class="between latest-foot">
+            <view class="text-muted">{{item.createdAtText || item.createdAt}}</view>
+            <view class="status status-{{item.statusTone}}">{{item.statusText}}</view>
+          </view>
+        </view>
+        <view wx:if="{{item.images && item.images.length}}" class="latest-visual" aria-hidden="true">
+          <image class="latest-thumb" src="{{item.images[0]}}" mode="aspectFill" />
+        </view>
+      </view>
+
+      <view wx:if="{{!latestList.length}}" class="empty-lite">
+        <view class="empty-lite-title">暂无公开信息</view>
+        <view class="empty-lite-desc">暂时还没有公开信息。</view>
+      </view>
+    </view>
+  </view>
+</view>

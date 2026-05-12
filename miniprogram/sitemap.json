@@ -1,0 +1,9 @@
+{
+  "desc": "拾光循迹 sitemap",
+  "rules": [
+    {
+      "action": "allow",
+      "page": "*"
+    }
+  ]
+}

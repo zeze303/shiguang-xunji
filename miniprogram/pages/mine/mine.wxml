@@ -1,0 +1,80 @@
+<view class="page-root {{themeClass}}">
+<view class="container page-top-safe mine-page">
+  <view class="mine-hero card">
+    <view class="mine-hero-kicker">PROFILE CENTER</view>
+    <view class="mine-hero-title">我的空间</view>
+    <view class="mine-hero-desc">集中查看个人资料、OpenID、登记记录和管理入口。</view>
+  </view>
+
+  <view class="profile-card">
+    <view class="profile-main">
+      <view class="avatar-wrap">
+        <image
+          wx:if="{{userInfo && userInfo.avatarUrl}}"
+          class="avatar"
+          src="{{userInfo.avatarUrl}}"
+          mode="aspectFill"
+        />
+        <image
+          wx:else
+          class="avatar"
+          src="/images/icon-avatar-default.svg"
+          mode="aspectFill"
+        />
+      </view>
+
+      <view class="profile-info">
+        <view class="nickname">{{userInfo ? userInfo.nickName : '微信用户'}}</view>
+        <view class="profile-tip">查看我的登记和处理状态</view>
+
+        <view class="openid-row" bindtap="copyOpenid">
+          <view class="openid-label">OpenID</view>
+          <view class="openid-value">{{openid || '点击复制 OpenID'}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="profile-actions">
+      <view class="profile-btn profile-btn-light" bindtap="copyOpenid">复制 OpenID</view>
+      <view class="profile-btn" bindtap="handleGetProfile">更新头像昵称</view>
+    </view>
+  </view>
+
+  <view class="menu-card">
+    <view class="section-title">常用功能</view>
+
+    <view
+      class="menu-item"
+      wx:for="{{menuList}}"
+      wx:key="key"
+      data-url="{{item.url}}"
+      data-switch-tab="{{item.switchTab}}"
+      bindtap="goMenu"
+    >
+      <view class="menu-main">
+        <image wx:if="{{item.icon}}" class="menu-icon" src="{{item.icon}}" mode="aspectFit" />
+        <view>
+          <view class="menu-title">{{item.title}}</view>
+          <view class="menu-desc">{{item.desc}}</view>
+        </view>
+      </view>
+      <view class="menu-arrow">›</view>
+    </view>
+  </view>
+
+  <view class="menu-card admin-card" wx:if="{{isAdmin}}">
+    <view class="section-title">管理员入口</view>
+
+    <view class="menu-item" bindtap="goAdmin">
+      <view class="menu-main">
+        <image class="menu-icon" src="/images/icon-menu-admin.svg" mode="aspectFit" />
+        <view>
+          <view class="menu-title">审核管理中心</view>
+          <view class="menu-desc">审核和管理登记内容</view>
+        </view>
+      </view>
+      <view class="menu-arrow">›</view>
+    </view>
+  </view>
+</view>
+</view>

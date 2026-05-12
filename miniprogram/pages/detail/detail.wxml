@@ -1,0 +1,121 @@
+<view class="page-root {{themeClass}}">
+<view class="container" wx:if="{{detail}}">
+  <view class="detail-hero card">
+    <view class="detail-hero-kicker">DETAIL VIEW</view>
+    <view class="detail-hero-title">线索详情台账</view>
+    <view class="detail-hero-desc">查看当前状态、审核记录、时间流转和联系方式，完整追踪一条失物线索。</view>
+  </view>
+
+  <view class="card detail-card">
+    <view class="between detail-head">
+      <view class="post-title">{{detail.title}}</view>
+      <view class="tag {{detail.type === 'found' ? 'tag-green' : 'tag-orange'}}">{{detail.type === 'found' ? '招领' : '寻物'}}</view>
+    </view>
+
+    <view class="status-overview card-lite">
+      <view class="status-overview-title">当前状态</view>
+      <view class="status-overview-main {{statusMeta.tone === 'success' ? 'status-text-success' : statusMeta.tone === 'default' ? 'status-text-default' : statusMeta.tone === 'danger' ? 'status-text-danger' : 'status-text-warning'}}">{{statusMeta.label}}</view>
+      <view class="status-overview-desc">{{statusMeta.desc}}</view>
+    </view>
+
+    <view class="status-panel">
+      <view class="status-chip {{detail.status === 'resolved' ? 'status-chip-resolved' : detail.status === 'closed' ? 'status-chip-closed' : detail.status === 'published' ? 'status-chip-published' : 'status-chip-pending'}}">
+        状态：{{statusMeta.label}}
+      </view>
+      <view class="status-chip status-chip-category">分类：{{detail.category}}</view>
+      <view class="status-chip status-chip-time">时间：{{detail.time}}</view>
+      <view wx:if="{{isAdmin}}" class="status-chip status-chip-admin">管理员视角</view>
+    </view>
+
+    <view class="flow-panel">
+      <view class="section-title">状态流转</view>
+      <view class="flow-list">
+        <view class="flow-item" wx:for="{{statusFlow}}" wx:key="key">
+          <image wx:if="{{item.icon}}" class="flow-icon" src="{{item.icon}}" mode="aspectFit" />
+          <view wx:else class="flow-dot {{item.done ? 'flow-dot-done' : ''}}"></view>
+          <view class="flow-text {{item.done ? 'flow-text-done' : ''}}">{{item.label}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="audit-panel {{auditMeta.tone === 'danger' ? 'audit-panel-danger' : auditMeta.tone === 'warning' ? 'audit-panel-warn' : 'audit-panel-success'}}">
+      <view class="audit-head" wx:if="{{auditMeta.tone === 'success'}}">
+        <image class="audit-icon" src="/images/icon-audit-approved.svg" mode="aspectFit" />
+        <view class="audit-title">审核状态：{{auditMeta.label}}</view>
+      </view>
+      <view wx:else class="audit-title">审核状态：{{auditMeta.label}}</view>
+      <view class="audit-desc">{{auditMeta.desc}}</view>
+      <view wx:if="{{detail.auditStatus === 'rejected'}}" class="audit-reason-box">
+        <view class="audit-reason-label">失败原因</view>
+        <view class="audit-reason-text">{{auditReasonText}}</view>
+      </view>
+      <view wx:elif="{{auditReasonText}}" class="audit-remark-text">{{auditReasonText}}</view>
+    </view>
+
+    <view class="timeline-panel" wx:if="{{timelineFields.length}}">
+      <view class="section-title">时间记录</view>
+      <view class="timeline-line" wx:for="{{timelineFields}}" wx:key="label">
+        <view class="timeline-label">{{item.label}}</view>
+        <view class="timeline-value">{{item.value}}</view>
+      </view>
+    </view>
+
+    <scroll-view wx:if="{{detail.images && detail.images.length}}" scroll-x class="detail-image-scroll" enable-flex="true">
+      <view class="detail-image-list">
+        <image class="detail-image" wx:for="{{detail.images}}" wx:key="*this" src="{{item}}" mode="aspectFill" data-url="{{item}}" bindtap="previewImage" />
+      </view>
+    </scroll-view>
+
+    <view class="info-panel">
+      <view class="detail-line">物品名称：{{detail.itemName}}</view>
+      <view class="detail-line">地点：{{detail.location}}</view>
+      <view class="detail-line">登记人：{{detail.userName}}</view>
+      <view class="detail-line">登记时间：{{detail.createdAtText || detail.createdAt}}</view>
+    </view>
+
+    <view class="contact-panel">
+      <view class="between contact-head">
+        <view class="contact-label">联系信息</view>
+        <view class="copy-btn" bindtap="copyContact">复制联系信息</view>
+      </view>
+      <view class="contact-value">{{detail.contact}}</view>
+    </view>
+
+    <view class="desc-box">
+      <view class="section-title">详细描述</view>
+      <view class="detail-desc">{{detail.description || '暂无详细描述'}}</view>
+    </view>
+
+    <button wx:if="{{!isOwner}}" class="primary-btn action-btn mt-30" bindtap="contactUser">联系对方</button>
+
+    <block wx:if="{{isOwner || isAdmin}}">
+      <view class="action-group action-group-main mt-20">
+        <view class="action-group-title">操作</view>
+
+        <block wx:if="{{detail && statusMeta && statusMeta.label === '展示中'}}">
+          <button wx:if="{{detail.auditStatus === 'approved'}}" class="success-btn action-btn mt-20" bindtap="markResolved">标记为已完成</button>
+          <button class="default-btn action-btn mt-20" bindtap="closePost">关闭本条信息</button>
+        </block>
+
+        <block wx:elif="{{detail && detail.status === 'resolved'}}">
+          <view class="action-tip mt-20">该信息已完成。</view>
+          <button wx:if="{{detail.auditStatus === 'approved'}}" class="primary-btn action-btn mt-20" bindtap="reopenPost">重新设为展示中</button>
+          <view wx:else class="action-tip action-tip-warn mt-20">仅审核通过的信息可恢复展示。</view>
+        </block>
+
+        <block wx:elif="{{detail && detail.status === 'closed'}}">
+          <view class="action-tip mt-20">该信息已关闭。</view>
+          <button wx:if="{{detail.auditStatus === 'approved'}}" class="primary-btn action-btn mt-20" bindtap="reopenPost">重新设为展示中</button>
+          <view wx:else class="action-tip action-tip-warn mt-20">仅审核通过的信息可恢复展示。</view>
+        </block>
+      </view>
+
+      <view class="action-group action-group-danger mt-20">
+        <view class="action-group-title action-group-title-danger">删除</view>
+        <view class="action-tip action-tip-danger mt-20">删除后不可恢复。</view>
+        <button class="danger-btn action-btn mt-20" bindtap="removePost">删除本条信息</button>
+      </view>
+    </block>
+  </view>
+</view>
+</view>

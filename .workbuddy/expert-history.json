@@ -1,0 +1,28 @@
+{
+  "version": 2,
+  "sessions": {
+    "ed7e4116f0f5491d9b7cd75c7d627b64": [
+      {
+        "expertId": "FrontendDeveloper",
+        "name": "像素匠",
+        "profession": "前端开发工程师",
+        "avatarUrl": "https://acc-1258344699.cos.accelerate.myqcloud.com/workbuddy/experts/avatars/02-Engineering/FrontendDeveloper/FrontendDeveloper.png",
+        "promptUrl": "https://acc-1258344699.cos.accelerate.myqcloud.com/workbuddy/experts/experts/02-Engineering/FrontendDeveloper/FrontendDeveloper_zh.md",
+        "usedAt": 1777836593496,
+        "industryId": "02-Engineering"
+      }
+    ],
+    "79fb0978a9af47dc94f73ffe198b728d": [
+      {
+        "expertId": "FrontendDeveloper",
+        "name": "像素匠",
+        "profession": "前端开发工程师",
+        "avatarUrl": "https://acc-1258344699.cos.accelerate.myqcloud.com/workbuddy/experts/avatars/02-Engineering/FrontendDeveloper/FrontendDeveloper.png",
+        "promptUrl": "https://acc-1258344699.cos.accelerate.myqcloud.com/workbuddy/experts/experts/02-Engineering/FrontendDeveloper/FrontendDeveloper_zh.md",
+        "usedAt": 1777848073373,
+        "industryId": "all"
+      }
+    ]
+  },
+  "lastUpdated": 1777908160392
+}

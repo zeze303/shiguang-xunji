@@ -1,0 +1,35 @@
+/* 图标占位：替换为 <image src="/assets/icons/xxx.png" /> 后删除对应槽位样式即可 */
+
+.icon-ph {
+  box-sizing: border-box;
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 16rpx;
+  border: 2rpx dashed rgba(148, 163, 184, 0.45);
+  background: rgba(148, 163, 184, 0.12);
+  flex-shrink: 0;
+}
+
+.icon-ph--tab {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 14rpx;
+  margin-bottom: 6rpx;
+}
+
+.tab-item--active .icon-ph--tab {
+  border-style: solid;
+  border-color: var(--cyan);
+  box-shadow: 0 0 16rpx rgba(8, 145, 178, 0.25);
+}
+
+.theme-root.theme-dark .tab-item--active .icon-ph--tab {
+  box-shadow: 0 0 18rpx rgba(34, 211, 238, 0.28);
+}
+
+.icon-ph-label {
+  font-size: 14rpx;
+  font-weight: 600;
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+}

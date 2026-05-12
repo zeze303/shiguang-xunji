@@ -1,0 +1,70 @@
+<view class="page-root {{themeClass}}">
+<view class="container page-top-safe admin-page">
+  <view class="admin-hero card">
+    <view class="admin-hero-kicker">REVIEW CENTER</view>
+    <view class="admin-hero-title">审核管理中心</view>
+    <view class="admin-hero-desc">集中查看待审、已通过、驳回和关闭记录，统一处理平台内容。</view>
+  </view>
+
+  <view class="search-box">
+    <input class="input list-search-input" value="{{keyword}}" placeholder="搜索标题、登记人、地点、OpenID" placeholder-class="list-placeholder" bindinput="onInput" />
+  </view>
+
+  <scroll-view scroll-x class="filter-scroll" enable-flex="true">
+    <view class="filter-list filter-tabs">
+      <view class="tab-item {{activeTab === 'all' ? 'tab-active' : ''}}" data-tab="all" bindtap="switchTab">全部</view>
+      <view class="tab-item {{activeTab === 'pending' ? 'tab-active' : ''}}" data-tab="pending" bindtap="switchTab">审核中</view>
+      <view class="tab-item {{activeTab === 'approved' ? 'tab-active' : ''}}" data-tab="approved" bindtap="switchTab">已通过</view>
+      <view class="tab-item {{activeTab === 'rejected' ? 'tab-active' : ''}}" data-tab="rejected" bindtap="switchTab">未通过</view>
+      <view class="tab-item {{activeTab === 'closed' ? 'tab-active' : ''}}" data-tab="closed" bindtap="switchTab">已关闭</view>
+    </view>
+  </scroll-view>
+
+  <view class="card post-card" wx:for="{{list}}" wx:key="id">
+    <view class="between post-head" data-id="{{item.id}}" bindtap="goDetail">
+      <view class="post-title">{{item.title}}</view>
+      <view class="post-head-right">
+        <view class="audit-badge audit-{{item.auditTone}}">{{item.auditText}}</view>
+        <view class="tag {{item.type === 'found' ? 'tag-green' : 'tag-orange'}}">{{item.type === 'found' ? '招领' : '寻物'}}</view>
+      </view>
+    </view>
+
+    <view class="post-meta" data-id="{{item.id}}" bindtap="goDetail">
+      <text>{{item.category}}</text>
+      <text class="dot">·</text>
+      <text>{{item.location}}</text>
+      <text class="dot">·</text>
+      <text>{{item.userName}}</text>
+    </view>
+
+    <view class="openid-row" selectable="true">登记人 OpenID：{{item.userId || '暂无'}}</view>
+
+    <view class="status-row" data-id="{{item.id}}" bindtap="goDetail">
+      <view class="status status-{{item.statusTone}}">{{item.statusText}}</view>
+      <view class="status-time">{{item.time}}</view>
+    </view>
+
+    <view class="audit-panel">
+      <view class="audit-panel-title">审核备注</view>
+      <view class="audit-remark">{{item.auditReasonText}}</view>
+    </view>
+
+    <view class="admin-action-row mt-20">
+      <button wx:if="{{item.auditStatus === 'pending' || item.auditStatus === 'rejected'}}" class="approve-btn" size="mini" data-id="{{item.id}}" bindtap="approveItem">通过</button>
+      <button wx:if="{{item.auditStatus === 'pending' || item.auditStatus === 'approved'}}" class="reject-btn" size="mini" data-id="{{item.id}}" bindtap="rejectItem">驳回</button>
+      <button class="delete-btn" size="mini" data-id="{{item.id}}" bindtap="deleteItem">删除</button>
+    </view>
+
+    <view class="between mt-20">
+      <view class="text-muted">{{item.createdAtText || item.createdAt}}</view>
+      <view class="detail-entry" data-id="{{item.id}}" bindtap="goDetail">查看详情</view>
+    </view>
+  </view>
+
+  <view wx:if="{{list.length === 0}}" class="empty-wrap">
+    <image class="empty-placeholder" src="/images/icon-empty-placeholder.svg" mode="aspectFit" />
+    <view class="empty-text">{{emptyTitle}}</view>
+    <view class="empty-subtext">{{emptyDesc}}</view>
+  </view>
+</view>
+</view>

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>拾光循迹 - 浅色模式 B 方案示意</title>
+  <style>
+    :root {
+      --bg-top: #eef8ff;
+      --bg-mid: #e7f0ff;
+      --bg-bottom: #dce8fb;
+      --ink: #10233f;
+      --muted: #5f7496;
+      --cyan: #0ea5c6;
+      --cyan-strong: #0479a8;
+      --violet: #6f7bf7;
+      --violet-soft: #8ea0ff;
+      --card: rgba(255, 255, 255, 0.7);
+      --card-border: rgba(126, 156, 208, 0.22);
+      --shadow-xl: 0 24px 60px rgba(66, 97, 150, 0.18);
+      --shadow-lg: 0 16px 36px rgba(70, 100, 150, 0.14);
+      --shadow-md: 0 10px 24px rgba(81, 111, 157, 0.1);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-pill: 999px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(14, 165, 198, 0.18), transparent 28%),
+        radial-gradient(circle at 85% 12%, rgba(111, 123, 247, 0.22), transparent 24%),
+        linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 42%, var(--bg-bottom) 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .phone {
+      width: 390px;
+      min-height: 844px;
+      border-radius: 36px;
+      overflow: hidden;
+      position: relative;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.38) 0%, rgba(255,255,255,0.08) 100%);
+      box-shadow: 0 30px 80px rgba(32, 57, 94, 0.2);
+      border: 1px solid rgba(255,255,255,0.5);
+      backdrop-filter: blur(12px);
+    }
+
+    .screen {
+      padding: 22px 18px 124px;
+      position: relative;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-xl);
+      padding: 22px;
+      background:
+        linear-gradient(135deg, rgba(18, 173, 202, 0.96) 0%, rgba(92, 141, 250, 0.94) 48%, rgba(130, 111, 255, 0.92) 100%);
+      box-shadow: var(--shadow-xl);
+      color: #fff;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, rgba(255,255,255,0.16) 10%, transparent 38%, rgba(255,255,255,0.08) 70%, transparent 100%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      opacity: 0.78;
+      margin-bottom: 10px;
+    }
+
+    .title {
+      font-size: 42px;
+      line-height: 1;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .theme-chip {
+      border: 0;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: var(--radius-pill);
+      background: rgba(255,255,255,0.18);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.22);
+      backdrop-filter: blur(10px);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 1;
+      margin: 14px 0 0;
+      font-size: 16px;
+      line-height: 1.75;
+      color: rgba(255,255,255,0.92);
+      max-width: 92%;
+    }
+
+    .actions {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .action {
+      border-radius: var(--radius-pill);
+      padding: 16px 18px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 16px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .action.primary {
+      color: #08324a;
+      background: rgba(255,255,255,0.94);
+    }
+
+    .action.secondary {
+      color: #fff;
+      background: rgba(255,255,255,0.16);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+    }
+
+    .stats {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .stat {
+      border-radius: 18px;
+      padding: 14px 10px;
+      background: rgba(255,255,255,0.14);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 30px;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      font-size: 13px;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .section {
+      margin-top: 20px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 12px;
+      padding: 0 2px;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: 31px;
+      line-height: 1.05;
+      font-weight: 800;
+      color: #183457;
+    }
+
+    .section-head small {
+      color: var(--cyan-strong);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .chip-row {
+      display: flex;
+      gap: 10px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: var(--radius-pill);
+      background: rgba(255,255,255,0.64);
+      box-shadow: inset 0 0 0 1px rgba(120, 149, 197, 0.18);
+      font-size: 14px;
+      color: #537092;
+      white-space: nowrap;
+    }
+
+    .chip.active {
+      color: #fff;
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--violet) 100%);
+      box-shadow: 0 12px 24px rgba(81, 131, 220, 0.26);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      padding: 18px 16px;
+      background: var(--card);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--card-border);
+    }
+
+    .card.featured {
+      background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(237,246,255,0.72));
+      border-color: rgba(25, 151, 200, 0.28);
+      box-shadow: 0 18px 36px rgba(76, 135, 219, 0.18);
+    }
+
+    .card h3 {
+      margin: 0;
+      font-size: 17px;
+      line-height: 1.25;
+      color: #17385f;
+    }
+
+    .card p {
+      margin: 10px 0 0;
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--muted);
+    }
+
+    .feed {
+      margin-top: 16px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .feed-card {
+      display: flex;
+      gap: 14px;
+      align-items: stretch;
+      padding: 18px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(111, 138, 189, 0.18);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feed-rail {
+      width: 6px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--cyan), var(--violet));
+      flex-shrink: 0;
+    }
+
+    .feed-main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .feed-main h4 {
+      margin: 0;
+      font-size: 18px;
+      color: #17385f;
+    }
+
+    .feed-main p {
+      margin: 10px 0 0;
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    .feed-meta {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #6f86a4;
+    }
+
+    .dock {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 22px;
+      padding: 10px;
+      border-radius: 28px;
+      background: rgba(255,255,255,0.62);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px rgba(65, 87, 123, 0.2);
+      border: 1px solid rgba(255,255,255,0.72);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .dock-item {
+      padding: 12px 6px;
+      text-align: center;
+      border-radius: 20px;
+      font-size: 13px;
+      color: #7185a1;
+      font-weight: 700;
+    }
+
+    .dock-item.active {
+      color: var(--cyan-strong);
+      background: linear-gradient(180deg, rgba(14,165,198,0.12), rgba(111,123,247,0.1));
+      box-shadow: inset 0 0 0 1px rgba(14,165,198,0.18);
+    }
+  </style>
+</head>
+<body>
+  <main class="phone">
+    <section class="screen">
+      <section class="hero">
+        <div class="hero-top">
+          <div>
+            <div class="eyebrow">SGXX · CAMPUS LEDGER</div>
+            <h1 class="title">拾光循迹</h1>
+          </div>
+          <button class="theme-chip">浅色</button>
+        </div>
+        <p>校园失物招领平台。统一展示、快速检索、状态留痕，让每一条线索都能被更快看见。</p>
+        <div class="actions">
+          <div class="action primary">快速发布</div>
+          <div class="action secondary">浏览台账</div>
+        </div>
+        <div class="stats">
+          <div class="stat"><strong>4</strong><span>累计展示</span></div>
+          <div class="stat"><strong>4</strong><span>展示中</span></div>
+          <div class="stat"><strong>0</strong><span>已完成</span></div>
+          <div class="stat"><strong>0</strong><span>审核中</span></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>快捷筛选</h2>
+          <small>查看全部</small>
+        </div>
+        <div class="chip-row">
+          <div class="chip active">全部信息</div>
+          <div class="chip">证件专区</div>
+          <div class="chip">展示中</div>
+          <div class="chip">已完成</div>
+        </div>
+        <div class="cards">
+          <article class="card featured">
+            <h3>全部信息</h3>
+            <p>查看最新失物招领信息，入口更亮，层级更清晰。</p>
+          </article>
+          <article class="card">
+            <h3>证件专区</h3>
+            <p>身份证、校园卡等高频物品，信息卡更有雾面层次。</p>
+          </article>
+          <article class="card">
+            <h3>展示中</h3>
+            <p>查看当前公开展示中的记录，弱化背景但保持边界感。</p>
+          </article>
+          <article class="card">
+            <h3>已完成</h3>
+            <p>完成类信息更安静，减少与重点入口抢视觉。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <h2>最新信息</h2>
+          <small>更多</small>
+        </div>
+        <div class="feed">
+          <article class="feed-card">
+            <div class="feed-rail"></div>
+            <div class="feed-main">
+              <h4>蓝色卡包 · 图书馆北门</h4>
+              <p>浅色模式下的信息卡不再只是纯白矩形，而是带轻雾感和更明显的主次层级。</p>
+              <div class="feed-meta">证件 · 10 分钟前</div>
+            </div>
+          </article>
+        </div>
+      </section>
+    </section>
+
+    <nav class="dock">
+      <div class="dock-item active">首页</div>
+      <div class="dock-item">列表</div>
+      <div class="dock-item">发布</div>
+      <div class="dock-item">我的</div>
+    </nav>
+  </main>
+</body>
+</html>

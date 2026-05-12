@@ -1,0 +1,28 @@
+请将以下图标文件放入：miniprogram/images/
+
+1. home-found.png
+2. home-lost.png
+3. mine-avatar-default.png
+4. menu-admin.png
+5. audit-approved.png
+6. audit-rejected.png
+7. status-pending.png
+8. status-resolved.png
+9. contact-info.png
+10. copy.png
+11. upload-image.png
+12. delete-image.png
+13. menu-posts.png
+14. menu-profile.png
+15. menu-help.png
+
+当前代码已接入：
+- home-found.png
+- home-lost.png
+- mine-avatar-default.png
+- menu-admin.png
+- menu-posts.png
+- menu-profile.png
+- menu-help.png
+
+其余图标暂未接入页面展示，可后续继续替换审核状态、联系方式、上传区与删除按钮等位置。

@@ -1,0 +1,16 @@
+<view class="dock-wrap theme-root {{themeClass}}">
+  <view class="dock">
+    <view
+      class="tab-item {{selected === index ? 'tab-item--active' : ''}}"
+      wx:for="{{list}}"
+      wx:key="pagePath"
+      data-path="{{item.pagePath}}"
+      data-index="{{index}}"
+      bindtap="switchTab"
+    >
+      <view class="tab-orbit" aria-hidden="true"></view>
+      <image class="tab-icon {{selected === index ? 'tab-icon--active' : ''}}" src="{{item.icon}}" mode="aspectFit" aria-hidden="true"></image>
+      <text class="tab-text">{{item.text}}</text>
+    </view>
+  </view>
+</view>
