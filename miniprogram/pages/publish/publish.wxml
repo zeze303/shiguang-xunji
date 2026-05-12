@@ -36,7 +36,10 @@
     <view wx:if="{{errors.itemName}}" class="error-text">{{errors.itemName}}</view>
 
     <picker mode="selector" range="{{categories}}" value="{{categoryIndex}}" bindchange="pickCategory">
-      <view class="input publish-input picker-input">物品分类：{{categories[categoryIndex]}}</view>
+      <view class="input publish-input picker-input">
+        <image class="picker-icon" src="/images/{{categoryIcons[categoryIndex]}}" mode="aspectFit" />
+        <text>物品分类：{{categories[categoryIndex]}}</text>
+      </view>
     </picker>
 
     <input class="input publish-input {{errors.location ? 'input-error' : ''}}" value="{{form.location}}" placeholder="请输入地点" placeholder-class="input-placeholder" data-field="location" bindinput="onInput" />

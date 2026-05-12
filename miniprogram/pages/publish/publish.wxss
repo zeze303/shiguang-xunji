@@ -181,6 +181,17 @@
   box-sizing: border-box;
   font-size: 28rpx;
   margin-bottom: 12rpx;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.publish-input:focus {
+  border-color: var(--cyan);
+  box-shadow: inset 3rpx 0 0 var(--cyan);
+}
+
+.publish-textarea:focus {
+  border-color: var(--cyan);
+  box-shadow: inset 3rpx 0 0 var(--cyan);
 }
 
 .input-error {
@@ -197,7 +208,14 @@
 .picker-input {
   display: flex;
   align-items: center;
+  gap: 12rpx;
   color: var(--text-primary);
+}
+
+.picker-icon {
+  width: 36rpx;
+  height: 36rpx;
+  flex-shrink: 0;
 }
 
 .time-row {

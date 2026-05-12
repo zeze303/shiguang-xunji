@@ -9,7 +9,8 @@ const {
   getContactRule,
   hitRiskyWord,
   ERROR_CODES,
-  getErrorMessage
+  getErrorMessage,
+  CATEGORY_ICON_MAP
 } = require('../../utils/post-config')
 const theme = require('../../utils/theme')
 
@@ -62,6 +63,7 @@ Page({
     themeClass: 'theme-light',
     type: 'found',
     categories: CATEGORY_OPTIONS,
+    categoryIcons: CATEGORY_OPTIONS.map(c => CATEGORY_ICON_MAP[c] || 'icon-cat-other.svg'),
     categoryIndex: 0,
     contactTypes: CONTACT_TYPE_OPTIONS,
     contactTypeIndex: 0,
