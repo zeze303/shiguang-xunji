@@ -8,7 +8,7 @@
 
   <view class="profile-card">
     <view class="profile-main">
-      <view class="avatar-wrap">
+      <view class="avatar-wrap" bindtap="handleGetProfile">
         <image
           wx:if="{{userInfo && userInfo.avatarUrl}}"
           class="avatar"
@@ -21,6 +21,9 @@
           src="/images/icon-avatar-default.svg"
           mode="aspectFill"
         />
+        <view class="avatar-edit">
+          <image class="avatar-edit-icon" src="/images/icon-edit.svg" mode="aspectFit" />
+        </view>
       </view>
 
       <view class="profile-info">
