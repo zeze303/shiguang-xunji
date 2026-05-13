@@ -27,6 +27,48 @@
   line-height: 1.8;
 }
 
+.my-stats {
+  margin-bottom: 20rpx;
+  padding: 24rpx 20rpx;
+  border-radius: var(--radius-lg);
+  background: var(--glass);
+  border: 1rpx solid var(--glass-border);
+  box-shadow: var(--shadow-card);
+}
+
+.stats-grid-mini {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12rpx;
+}
+
+.stat-mini-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 6rpx;
+}
+
+.stat-mini-icon {
+  width: 36rpx;
+  height: 36rpx;
+  margin-bottom: 4rpx;
+}
+
+.stat-mini-value {
+  font-size: 34rpx;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.stat-mini-label {
+  font-size: 22rpx;
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
 .search-box {
   width: 100%;
   margin-bottom: 16rpx;

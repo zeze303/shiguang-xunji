@@ -9,6 +9,7 @@ Page({
     allList: [],
     activeTab: 'all',
     keyword: '',
+    myStats: { total: 0, published: 0, reviewing: 0, resolved: 0 },
     emptyTitle: '暂无登记记录',
     emptyDesc: '还没有登记内容。',
     pageScrollTop: 0
@@ -52,8 +53,17 @@ Page({
 
   async loadData() {
     try {
-      const allList = this.normalizeList(await fetchMyPostsCloud())
-      this.setData({ allList })
+      const raw = await fetchMyPostsCloud()
+      const allList = this.normalizeList(raw)
+      const stats = { total: 0, published: 0, reviewing: 0, resolved: 0 }
+      raw.forEach(p => {
+        stats.total += 1
+        const s = normalizeStatus(p.status, p.auditStatus)
+        if (s === 'published') stats.published += 1
+        else if (s === 'reviewing') stats.reviewing += 1
+        else if (s === 'resolved') stats.resolved += 1
+      })
+      this.setData({ allList, myStats: stats })
       this.filterList(this.data.activeTab, this.data.keyword)
     } catch (error) {
       console.error('我的发布云读取失败：', error)

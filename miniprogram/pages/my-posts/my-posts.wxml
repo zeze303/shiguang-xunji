@@ -6,6 +6,31 @@
     <view class="my-posts-hero-desc">查看审核状态、失败原因、展示进度和最终处理结果。</view>
   </view>
 
+  <view class="my-stats my-card">
+    <view class="stats-grid-mini">
+      <view class="stat-mini-item">
+        <image class="stat-mini-icon" src="/images/icon-stats-posted.svg" mode="aspectFit" />
+        <view class="stat-mini-value">{{myStats.total}}</view>
+        <view class="stat-mini-label">全部</view>
+      </view>
+      <view class="stat-mini-item">
+        <image class="stat-mini-icon" src="/images/icon-stats-pending.svg" mode="aspectFit" />
+        <view class="stat-mini-value">{{myStats.reviewing}}</view>
+        <view class="stat-mini-label">审核中</view>
+      </view>
+      <view class="stat-mini-item">
+        <image class="stat-mini-icon" src="/images/icon-home-found.svg" mode="aspectFit" />
+        <view class="stat-mini-value">{{myStats.published}}</view>
+        <view class="stat-mini-label">展示中</view>
+      </view>
+      <view class="stat-mini-item">
+        <image class="stat-mini-icon" src="/images/icon-stats-done.svg" mode="aspectFit" />
+        <view class="stat-mini-value">{{myStats.resolved}}</view>
+        <view class="stat-mini-label">已完成</view>
+      </view>
+    </view>
+  </view>
+
   <view class="search-box">
     <input class="input list-search-input" value="{{keyword}}" placeholder="搜索标题、地点、失败原因" placeholder-class="list-placeholder" bindinput="onInput" />
   </view>
