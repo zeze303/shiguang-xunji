@@ -87,6 +87,7 @@ Page({
   },
 
   onNicknameBlur(e) {
+    this.setData({ editingNickname: false })
     const nickName = e.detail.value
     const info = this.data.userInfo || {}
     if (!nickName || nickName === info.nickName) return
