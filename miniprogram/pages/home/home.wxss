@@ -294,7 +294,7 @@
 
 
 .section-block {
-  margin-top: 28rpx;
+  margin-top: var(--spacing-lg);
 }
 
 .section-head {
