@@ -113,13 +113,30 @@
   background: var(--text-dim);
 }
 
-.post-head {
+.post-head-row {
+  display: flex;
+  gap: 16rpx;
   align-items: flex-start;
+}
+
+.admin-thumb {
+  width: 80rpx;
+  height: 80rpx;
+  flex: 0 0 80rpx;
+  border-radius: 14rpx;
+  background: var(--surface-muted);
+  border: 1rpx solid var(--glass-border);
+}
+
+.post-head-main {
+  flex: 1;
+  min-width: 0;
 }
 
 .post-head-right {
   display: flex;
   align-items: center;
+  margin-top: 8rpx;
 }
 
 .post-title {

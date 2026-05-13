@@ -21,11 +21,14 @@
   </scroll-view>
 
   <view class="card post-card" wx:for="{{list}}" wx:key="id" data-audit="{{item.auditStatus || 'all'}}">
-    <view class="between post-head" data-id="{{item.id}}" bindtap="goDetail">
-      <view class="post-title">{{item.title}}</view>
-      <view class="post-head-right">
-        <view class="audit-badge audit-{{item.auditTone}}">{{item.auditText}}</view>
-        <view class="tag {{item.type === 'found' ? 'tag-green' : 'tag-orange'}}">{{item.type === 'found' ? '招领' : '寻物'}}</view>
+    <view class="post-head-row" data-id="{{item.id}}" bindtap="goDetail">
+      <image class="admin-thumb" src="{{item.images && item.images[0] || '/images/icon-empty-placeholder.svg'}}" mode="aspectFill" />
+      <view class="post-head-main">
+        <view class="post-title">{{item.title}}</view>
+        <view class="post-head-right">
+          <view class="audit-badge audit-{{item.auditTone}}">{{item.auditText}}</view>
+          <view class="tag {{item.type === 'found' ? 'tag-green' : 'tag-orange'}}">{{item.type === 'found' ? '招领' : '寻物'}}</view>
+        </view>
       </view>
     </view>
 
