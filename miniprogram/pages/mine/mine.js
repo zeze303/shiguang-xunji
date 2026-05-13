@@ -1,4 +1,5 @@
-const { getUserProfileCloud, saveUserProfileCloud, getOpenId, isAdmin } = require('../../utils/cloud')
+const { getUserProfileCloud, saveUserProfileCloud, getOpenId, isAdmin, fetchMyPostsCloud } = require('../../utils/cloud')
+const { normalizeStatus } = require('../../utils/post-config')
 const { updateTabBar } = require('../../utils/tabbar')
 const theme = require('../../utils/theme')
 
@@ -10,6 +11,7 @@ Page({
     isAdmin: false,
     pageScrollTop: 0,
     editingNickname: false,
+    myStats: { total: 0, published: 0, reviewing: 0, resolved: 0 },
     menuList: [
       {
         key: 'posts',
@@ -48,14 +50,23 @@ Page({
   async loadProfile() {
     try {
       const [profile, openid] = await Promise.all([getUserProfileCloud(), getOpenId()])
-      const admin = await isAdmin(openid)
+      const [admin, myPosts] = await Promise.all([isAdmin(openid), fetchMyPostsCloud()])
+      const stats = { total: 0, published: 0, reviewing: 0, resolved: 0 }
+      myPosts.forEach(p => {
+        stats.total += 1
+        const s = normalizeStatus(p.status, p.auditStatus)
+        if (s === 'published') stats.published += 1
+        else if (s === 'reviewing') stats.reviewing += 1
+        else if (s === 'resolved') stats.resolved += 1
+      })
       this.setData({
         userInfo: profile || {
           nickName: '微信用户',
           avatarUrl: ''
         },
         openid: openid || '',
-        isAdmin: admin
+        isAdmin: admin,
+        myStats: stats
       })
     } catch (error) {
       console.error('个人信息加载失败：', error)
