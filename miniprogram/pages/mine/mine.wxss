@@ -122,7 +122,9 @@
 }
 
 .nickname-row {
-  display: inline;
+  display: flex;
+  align-items: center;
+  width: fit-content;
   padding: 4rpx 0;
 }
 
@@ -131,10 +133,11 @@
 }
 
 .nickname-text {
-  display: inline;
+  flex: 0 0 auto;
   font-size: 32rpx;
   font-weight: 700;
   color: var(--text-primary);
+  line-height: 1.4;
 }
 
 .nickname-input {
