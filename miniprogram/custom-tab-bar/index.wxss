@@ -124,3 +124,20 @@
   color: var(--cyan);
   font-weight: 600;
 }
+
+/* T02: 发布按钮放大 + 发光上浮 */
+.tab-item--publish .tab-icon {
+  width: 56rpx;
+  height: 56rpx;
+  margin-bottom: 4rpx;
+  margin-top: -8rpx;
+  transition: filter 0.3s ease;
+}
+
+.tab-item--publish .tab-icon--active {
+  filter: drop-shadow(0 0 20rpx rgba(8, 145, 178, 0.38));
+}
+
+.theme-root.theme-dark .tab-item--publish .tab-icon--active {
+  filter: drop-shadow(0 0 24rpx rgba(34, 211, 238, 0.38));
+}

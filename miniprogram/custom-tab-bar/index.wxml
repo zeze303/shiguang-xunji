@@ -1,7 +1,7 @@
 <view class="dock-wrap theme-root {{themeClass}}">
   <view class="dock">
     <view
-      class="tab-item {{selected === index ? 'tab-item--active' : ''}}"
+      class="tab-item {{selected === index ? 'tab-item--active' : ''}} {{index === 2 ? 'tab-item--publish' : ''}}"
       wx:for="{{list}}"
       wx:key="pagePath"
       data-path="{{item.pagePath}}"
