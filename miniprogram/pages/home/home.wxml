@@ -105,19 +105,19 @@
       <view class="latest-card" wx:for="{{latestList}}" wx:key="id" data-id="{{item.id}}" bindtap="goDetail">
         <view class="latest-rail {{item.type === 'found' ? 'latest-rail-found' : 'latest-rail-lost'}}"></view>
         <view class="latest-main">
-          <view class="between latest-head">
-            <view class="latest-title">{{item.title}}</view>
-            <view class="tag {{item.type === 'found' ? 'tag-green' : 'tag-orange'}}">{{item.type === 'found' ? '招领' : '寻物'}}</view>
-          </view>
+          <view class="latest-title">{{item.title}}</view>
           <view class="latest-meta">{{item.category}} · {{item.location}} · {{item.time}}</view>
           <view class="latest-desc">{{item.description}}</view>
+          <view wx:if="{{item.images && item.images.length}}" class="latest-visual-inline">
+            <image class="latest-thumb-inline" src="{{item.images[0]}}" mode="aspectFill" />
+          </view>
           <view class="between latest-foot">
             <view class="text-muted">{{item.createdAtText || item.createdAt}}</view>
-            <view class="status status-{{item.statusTone}}">{{item.statusText}}</view>
+            <view class="latest-tags">
+              <view class="tag {{item.type === 'found' ? 'tag-green' : 'tag-orange'}}">{{item.type === 'found' ? '招领' : '寻物'}}</view>
+              <view class="status status-{{item.statusTone}}">{{item.statusText}}</view>
+            </view>
           </view>
-        </view>
-        <view wx:if="{{item.images && item.images.length}}" class="latest-visual" aria-hidden="true">
-          <image class="latest-thumb" src="{{item.images[0]}}" mode="aspectFill" />
         </view>
       </view>
 
