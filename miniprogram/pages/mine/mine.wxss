@@ -285,7 +285,7 @@
 
 .menu-card-accent {
   border-left: 6rpx solid var(--color-warning);
-  border-radius: var(--radius-md) var(--radius-md) var(--radius-md) 0;
+  border-radius: var(--radius-md);
 }
 
 .menu-item {
