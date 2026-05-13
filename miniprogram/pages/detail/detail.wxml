@@ -74,6 +74,7 @@
       <view class="detail-image-list">
         <image class="detail-image" wx:for="{{detail.images}}" wx:key="*this" src="{{item}}" mode="aspectFill" data-url="{{item}}" bindtap="previewImage" />
       </view>
+      <view class="detail-image-hint">点击图片查看大图</view>
     </scroll-view>
 
     <view class="info-panel">
