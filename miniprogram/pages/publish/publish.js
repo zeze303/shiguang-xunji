@@ -73,6 +73,7 @@ Page({
     draftTip: '',
     draftRestored: false,
     submitting: false,
+    submitted: false,
     hasDraft: false,
     draftSavedAt: 0,
     draftTimeText: '',
@@ -490,19 +491,16 @@ Page({
       createPost(payload)
       this.resetForm()
       wx.hideLoading()
+      this.setData({ submitted: true, submitting: false })
       wx.showToast({ title: '提交成功', icon: 'success' })
       setTimeout(() => {
         wx.switchTab({ url: '/pages/list/list' })
-      }, 500)
+      }, 800)
     } catch (error) {
       console.error('云提交失败：', error)
       wx.hideLoading()
       this.setData({ submitting: false })
-      wx.showModal({
-        title: '提交失败',
-        content: getErrorMessage(ERROR_CODES.NETWORK_BUSY, '提交未成功，请稍后重试。'),
-        showCancel: false
-      })
+      wx.showToast({ title: '提交失败，请重试', icon: 'none' })
     }
   }
 })

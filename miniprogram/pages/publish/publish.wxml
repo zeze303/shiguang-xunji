@@ -102,7 +102,7 @@
 
   <view class="publish-bottom-safe"></view>
   <view class="publish-fixed-bar">
-    <button class="primary-btn publish-fixed-btn {{(!openidReady || checkingOpenId) ? 'publish-fixed-btn-disabled' : ''}}" loading="{{submitting}}" disabled="{{submitting || !openidReady || checkingOpenId}}" bindtap="submitForm">{{checkingOpenId ? '检测中...' : (!openidReady ? '暂不可提交' : '提交登记')}}</button>
+    <button class="publish-fixed-btn {{submitted ? 'publish-fixed-btn-success' : 'publish-fixed-btn-primary'}} {{(!openidReady || checkingOpenId) ? 'publish-fixed-btn-disabled' : ''}}" loading="{{submitting && !submitted}}" disabled="{{submitting || submitted || !openidReady || checkingOpenId}}" bindtap="submitForm">{{checkingOpenId ? '检测中...' : (submitted ? '已提交' : (!openidReady ? '暂不可提交' : '提交登记'))}}</button>
   </view>
 </view>
 </view>
