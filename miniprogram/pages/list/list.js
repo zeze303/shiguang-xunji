@@ -235,6 +235,10 @@ Page({
     wx.navigateTo({ url: `/pages/detail/detail?id=${id}` })
   },
 
+  goPublish() {
+    wx.switchTab({ url: '/pages/publish/publish' })
+  },
+
   onTabRepeat() {
     this.applyExternalFilter()
     this.loadData()
