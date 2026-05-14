@@ -42,7 +42,7 @@
         <view class="between post-head">
           <view class="post-title">{{item.title}}</view>
           <view class="post-head-right">
-            <view wx:if="{{item.isNew}}" class="new-badge">最新</view>
+            <view wx:if="{{item.isNew}}" class="new-badge">新</view>
             <view class="tag {{item.type === 'found' ? 'tag-green' : 'tag-orange'}}">{{item.type === 'found' ? '招领' : '寻物'}}</view>
           </view>
         </view>
@@ -78,7 +78,7 @@
     <view class="empty-text">{{emptyTitle}}</view>
     <view class="empty-subtext">{{emptyDesc}}</view>
     <view class="empty-actions">
-      <view class="empty-action" bindtap="goPublish">去发布</view>
+      <view class="empty-action" bindtap="goPublish">去登记</view>
       <view wx:if="{{hasFilter}}" class="empty-action empty-action-outline" bindtap="resetFilters">重置筛选</view>
     </view>
   </view>

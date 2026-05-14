@@ -1,10 +1,12 @@
 <view class="page-root {{themeClass}}">
 <view class="container publish-page page-top-safe">
   <view class="publish-hero card">
-    <view class="publish-hero-kicker">FAST CREATE</view>
+    <view class="publish-hero-kicker">TOOL</view>
     <view class="publish-hero-title">登记失物线索</view>
     <view class="publish-hero-desc">按步骤补全信息、上传图片并填写联系方式，系统会自动进入审核与展示流程。</view>
   </view>
+
+  <view class="tool-notice">本工具仅用于失物招领信息登记，不属于社交平台。</view>
 
   <view class="card publish-card">
     <view class="openid-banner openid-banner-loading" wx:if="{{checkingOpenId}}">正在获取 OpenID...</view>

@@ -96,7 +96,7 @@
     <view class="section-block">
       <view class="between section-head">
         <view>
-          <view class="section-title">最新信息</view>
+          <view class="section-title">近期登记</view>
           <view class="section-subtitle">实时线索流</view>
         </view>
         <view class="section-link" bindtap="goList">更多</view>

@@ -27,6 +27,17 @@
   line-height: 1.8;
 }
 
+.tool-notice {
+  margin-bottom: 20rpx;
+  padding: 16rpx 20rpx;
+  border-radius: var(--radius-sm);
+  background: var(--color-info-bg);
+  color: var(--color-info);
+  font-size: var(--font-sm);
+  text-align: center;
+  line-height: 1.6;
+}
+
 .publish-card,
 .upload-card {
   padding: 24rpx;
