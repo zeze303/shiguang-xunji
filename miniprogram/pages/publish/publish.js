@@ -68,7 +68,6 @@ Page({
     contactTypes: CONTACT_TYPE_OPTIONS,
     contactTypeIndex: 0,
     form: initialForm(),
-    imageList: [],
     errors: {},
     draftTip: '',
     draftRestored: false,
@@ -175,7 +174,6 @@ Page({
           ...this.data.form,
           ...(draft.form || {})
         },
-        imageList: Array.isArray(draft.imageList) ? draft.imageList : [],
         draftRestored: true,
         hasDraft: true,
         draftSavedAt: draft.updatedAt || 0,
@@ -195,7 +193,6 @@ Page({
         type: this.data.type,
         categoryIndex: this.data.categoryIndex,
         contactTypeIndex: this.data.contactTypeIndex,
-        imageList: this.data.imageList
       })
 
       if (!draft) {
@@ -238,7 +235,7 @@ Page({
   },
 
   hasCurrentInput() {
-    const { form, imageList } = this.data
+    const { form } = this.data
     const fields = [
       form.title,
       form.itemName,
@@ -247,7 +244,7 @@ Page({
       form.contactValue,
       form.description
     ]
-    return imageList.length > 0 || fields.some(item => !!safeTrim(item))
+    return fields.some(item => !!safeTrim(item))
   },
 
   switchType(e) {
@@ -378,41 +375,7 @@ Page({
     return true
   },
 
-  chooseImage() {
-    const remain = 3 - this.data.imageList.length
-    if (remain <= 0) {
-      wx.showToast({ title: '最多上传3张图片', icon: 'none' })
-      return
-    }
-
-    wx.chooseMedia({
-      count: remain,
-      mediaType: ['image'],
-      sizeType: ['compressed'],
-      sourceType: ['album', 'camera'],
-      success: res => {
-        const files = (res.tempFiles || []).map(item => item.tempFilePath).filter(Boolean)
-        const merged = [...this.data.imageList, ...files].slice(0, 3)
-        this.setData({ imageList: merged })
-        this.saveDraftSilently()
-      }
-    })
-  },
-
-  removeImage(e) {
-    const index = Number(e.currentTarget.dataset.index)
-    const list = [...this.data.imageList]
-    list.splice(index, 1)
-    this.setData({ imageList: list })
-    this.saveDraftSilently()
-  },
-
-  previewImage(e) {
-    const current = e.currentTarget.dataset.url
-    wx.previewImage({
-      current,
-      urls: this.data.imageList
-    })
+  // image upload removed for audit compliance
   },
 
   buildPayload() {
@@ -425,7 +388,6 @@ Page({
       time: safeTrim(form.time),
       contact: buildContactText(finalContactType, form.contactValue),
       description: safeTrim(form.description),
-      images: this.data.imageList,
       type: this.data.type,
       category: this.data.categories[this.data.categoryIndex]
     }
@@ -444,7 +406,6 @@ Page({
         time: now.time,
         contactType: '微信'
       },
-      imageList: [],
       errors: {},
       draftTip: '',
       draftRestored: false,

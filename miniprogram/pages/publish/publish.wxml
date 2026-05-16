@@ -3,7 +3,7 @@
   <view class="publish-hero card">
     <view class="publish-hero-kicker">TOOL</view>
     <view class="publish-hero-title">登记失物线索</view>
-    <view class="publish-hero-desc">按步骤补全信息、上传图片并填写联系方式，系统会自动进入审核与展示流程。</view>
+    <view class="publish-hero-desc">按步骤补全信息并填写联系方式，系统会自动进入审核与展示流程。</view>
   </view>
 
   <view class="tool-notice">本工具仅用于失物招领信息登记，不属于社交平台。</view>
@@ -79,27 +79,6 @@
     <view class="publish-note-title">登记须知</view>
     <view class="publish-note-item">· 标题尽量写清物品名称和场景，方便检索。</view>
     <view class="publish-note-item">· 联系方式建议填写可长期联系到你的渠道。</view>
-    <view class="publish-note-item">· 图片最多 3 张，优先上传清晰特征图。</view>
-  </view>
-
-  <view class="card upload-card">
-    <view class="upload-header between">
-      <view class="upload-title">物品图片</view>
-      <view class="upload-tip">最多上传 3 张</view>
-    </view>
-
-    <view class="upload-entry" bindtap="chooseImage" wx:if="{{imageList.length < 3}}">
-      <view class="upload-entry-icon" aria-hidden="true"></view>
-      <view class="upload-entry-text">添加图片</view>
-    </view>
-
-    <view class="image-grid" wx:if="{{imageList.length}}">
-      <view class="image-card" wx:for="{{imageList}}" wx:key="*this">
-        <image class="preview-image" src="{{item}}" mode="aspectFill" data-url="{{item}}" bindtap="previewImage" />
-        <view class="image-mask">预览</view>
-        <view class="remove-image" data-index="{{index}}" bindtap="removeImage">×</view>
-      </view>
-    </view>
   </view>
 
   <view class="publish-bottom-safe"></view>
